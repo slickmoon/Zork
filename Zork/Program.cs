@@ -13,7 +13,6 @@ namespace Zork
         1: Main Menu
         2: Credits Screen
         3: Game Screen
-
     */
 
     class Program
@@ -30,8 +29,9 @@ namespace Zork
 
             while (!Globals.exitRequested)
             {
-                gameState = currentDisplay.Run(); //player does stuff
 
+                gameState = currentDisplay.Run(); //player does stuff
+                 
                 switch (gameState) //update the game state based on player feedback
                 {
                     case GameStates.MenuScreen:

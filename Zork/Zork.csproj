@@ -45,9 +45,13 @@
   <ItemGroup>
     <Compile Include="Displays\Credits.cs" />
     <Compile Include="Displays\Display.cs" />
-    <Compile Include="Displays\Game.cs" />
+    <Compile Include="Displays\GameScreen.cs" />
     <Compile Include="Displays\Menu.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameFactory.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\Inventory.cs" />
+    <Compile Include="GameObjects\Item.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameStates.cs" />
     <Compile Include="Globals.cs" />

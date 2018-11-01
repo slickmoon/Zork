@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Player
+    class Player : GameObject
     {
+        int hitPoints;
+        
 
+        public Player(string name, string shortname, string description) : base(name, shortname, description)
+        {
+               
+        }
+        
     }
+
+
 }

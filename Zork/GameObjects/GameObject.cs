@@ -8,7 +8,15 @@ namespace Zork
 {
     class GameObject
     {
-        string name;
-        string shortName;        string description;
+        string name = "";
+        string shortName = "";
+        string description = "";
+
+        public GameObject(string name, string shortname, string description)
+        {
+            this.name = name;
+            this.shortName = shortname;
+            this.description = description;           
+        }
     }
 }

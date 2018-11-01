@@ -22,7 +22,7 @@ namespace Zork
             GameStates gameState = GameStates.MenuScreen;
             Display mainMenu = new Menu();
             Display credits = new Credits();
-            Display mainGame = new Game();
+            Display mainGame = new GameScreen();
 
 
             Display currentDisplay = mainMenu; //starting on main menu

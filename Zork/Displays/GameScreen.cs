@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 { 
-    class Game: Display
+    class GameScreen: Display
     {
         public override GameStates Run()
         {

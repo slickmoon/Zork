@@ -52,6 +52,7 @@
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Inventory.cs" />
     <Compile Include="GameObjects\Item.cs" />
+    <Compile Include="GameObjects\Location.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameStates.cs" />
     <Compile Include="Globals.cs" />

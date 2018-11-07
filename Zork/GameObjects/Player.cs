@@ -9,11 +9,12 @@ namespace Zork
     class Player : GameObject
     {
         int hitPoints;
+        Location currentLoc;
         
 
-        public Player(string name, string shortname, string description) : base(name, shortname, description)
+        public Player(string name, string shortname, string description, Location startLoc) : base(name, shortname, description)
         {
-               
+            currentLoc = startLoc;      
         }
         
     }

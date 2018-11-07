@@ -8,9 +8,9 @@ namespace Zork
 {
     class GameObject
     {
-        string name = "";
-        string shortName = "";
-        string description = "";
+        public string name = "";
+        public string shortName = "";
+        public string description = "";
 
         public GameObject(string name, string shortname, string description)
         {

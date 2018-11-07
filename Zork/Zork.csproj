@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Directions.cs" />
     <Compile Include="Displays\Credits.cs" />
     <Compile Include="Displays\Display.cs" />
     <Compile Include="Displays\GameScreen.cs" />

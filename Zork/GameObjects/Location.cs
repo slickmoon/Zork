@@ -8,14 +8,14 @@ namespace Zork
 {
     class Location : GameObject
     {
-        Location northLoc;
-        Location southLoc;
-        Location eastLoc;
-        Location westLoc;
-        Location upLoc;
-        Location downLoc;
+        public Location northLoc;
+        public Location southLoc;
+        public Location eastLoc;
+        public Location westLoc;
+        public Location upLoc;
+        public Location downLoc;
 
-        bool newLoc = true; //all locations are new at first, when a player enters the game will display the descriptive text if it is the first time the player has been here
+        public bool newLoc = true; //all locations are new at first, when a player enters the game will display the descriptive text if it is the first time the player has been here
 
         public Location(string name,string description):base(name,"",description)
         {

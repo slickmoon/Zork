@@ -19,38 +19,45 @@ namespace Zork
     {
         static void Main(string[] args)
         {
-            GameStates gameState = GameStates.MenuScreen;
-            Display mainMenu = new Menu();
-            Display credits = new Credits();
-            Display mainGame = new GameScreen();
-
-
-            Display currentDisplay = mainMenu; //starting on main menu
-
-            while (!Globals.exitRequested)
+            try
             {
+                GameStates gameState = GameStates.MenuScreen;
+                Display mainMenu = new Menu();
+                Display credits = new Credits();
+                Display mainGame = new GameScreen();
 
-                gameState = currentDisplay.Run(); //player does stuff
-                 
-                switch (gameState) //update the game state based on player feedback
+
+                Display currentDisplay = mainMenu; //starting on main menu
+
+                while (!Globals.exitRequested)
                 {
-                    case GameStates.MenuScreen:
-                        currentDisplay = mainMenu;
-                        break;
-                    case GameStates.CreditsScreen:
-                        currentDisplay = credits;
-                        break;
-                    case GameStates.Exit:
-                        Globals.exitRequested = true; 
-                        break;
-                    default:
-                        currentDisplay = mainMenu;
-                        break;
-                }
-            }
 
-            Console.WriteLine("Now Exiting..."); //Game Over
+                    gameState = currentDisplay.Run(); //player does stuff
+
+                    switch (gameState) //update the game state based on player feedback
+                    {
+                        case GameStates.MenuScreen:
+                            currentDisplay = mainMenu;
+                            break;
+                        case GameStates.CreditsScreen:
+                            currentDisplay = credits;
+                            break;
+                        case GameStates.Exit:
+                            Globals.exitRequested = true;
+                            break;
+                        default:
+                            currentDisplay = mainMenu;
+                            break;
+                    }
+                }
+
+                Console.WriteLine("Now Exiting..."); //Game Over
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
+            
     }
 }
             

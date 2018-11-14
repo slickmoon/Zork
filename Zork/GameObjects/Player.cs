@@ -16,29 +16,27 @@ namespace Zork
             currentLoc = startLoc;
         }
 
-        void Move(Directions newdirection) 
+        void Move(Directions newdirection)  //TODO: refactor
         {
             try
             {
                 switch (newdirection)
                 {
                     case Directions.East:
-                        CurrentLoc = CurrentLoc.eastLoc;
                         break;
                     case Directions.West:
-                        CurrentLoc = CurrentLoc.westLoc;
                         break;
                     case Directions.North:
-                        CurrentLoc = CurrentLoc.northLoc;
+                       
                         break;
                     case Directions.South:
-                        CurrentLoc = CurrentLoc.southLoc;
+                        
                         break;
                     case Directions.Up:
-                        CurrentLoc = CurrentLoc.upLoc;
+                        
                         break;
                     case Directions.Down:
-                        CurrentLoc = CurrentLoc.downLoc;
+                        
                         break;
                     default:
                         Console.WriteLine("That's not a location");
@@ -59,11 +57,14 @@ namespace Zork
                 Console.WriteLine("Movement finished");
             }
         }
+        
 
         void Move(Location newLoc)
         {
             CurrentLoc = newLoc;
         }
+        
+
 
         public Location CurrentLoc
         {

@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Inventory
+    class Inventory : Item
     {
         public List<Item> Items;
-        public Inventory inv;
 
-        public Inventory()
+        public Inventory(string name, string description) : base(name,name,description)
         {
-            SortItems();
+        
         }
+
+        public Inventory(List<Item> items, string name, string description) : base (name,name,description)
+        {
+            this.Items = items;
+        }
+
         public void SortItems(bool stop = false)
         {
             bool doIStopYet = false;

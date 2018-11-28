@@ -43,13 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Directions.cs" />
     <Compile Include="Displays\Credits.cs" />
     <Compile Include="Displays\Display.cs" />
-    <Compile Include="Displays\Game.cs" />
+    <Compile Include="Displays\GameScreen.cs" />
     <Compile Include="Displays\Menu.cs" />
-    <Compile Include="GameObject.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameFactory.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\Inventory.cs" />
+    <Compile Include="GameObjects\Item.cs" />
+    <Compile Include="GameObjects\Location.cs" />
+    <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameStates.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="MapFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\menuArt.txt" />
+    <Content Include="Assets\map.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,5 @@
+﻿1,Front Door,It's a door
+2,House,It's a house
+
+1,2,,,
+2,,1,,

@@ -8,18 +8,18 @@ namespace Zork
 {
     public static class Debug
     {
-        public void Log(string text)
+        public static void Log(string text)
         {
-            if (Text != null)
+            if (text != null)
             {
                 file = new System.IO.StreamWriter(@"../../Debug.txt");
                 file.WriteLine("Log: " + Text);
             }
         }
 
-        public void Error(string text)
+        public static void Error(string text)
         {
-            if (Text != null)
+            if (text != null)
             {
                 file = new System.IO.StreamWriter(@"../../Debug.txt");
                 file.WriteLine("Error: " + Text);

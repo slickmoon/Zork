@@ -56,9 +56,10 @@ namespace Zork
             }
             finally
             {
-                Console.WriteLine("Movement finished");
+                Console.WriteLine("Movement finished"); //Movement finished
             }
         }
+
 
         void Move(Location newLoc)
         {

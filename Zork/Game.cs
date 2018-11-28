@@ -10,12 +10,10 @@ namespace Zork
     {
         private Player p1;
         private List<Location> locations;
+        public bool gameOver = false;
 
         public Game()
         {
-            locations.Add(new Location());
-            locations.Add(new Location());
-            locations.Add(new Location());
 
             locations.Add(new Location("Clearing", "", 0, 1, 0));
             locations.Add(new Location("Front of House", "", 0, 2, 0));
@@ -27,7 +25,22 @@ namespace Zork
 
         public void Run()
         {
+            //Show player current location
             Console.WriteLine(p1.CurrentLoc.name);
+
+            //Get player input
+            Console.Write(" Please enter a command: ");
+
+            string rawInput = "";
+            rawInput = Console.ReadLine();
+            
+            //TODO: Parse input to find out what the player wants to do
+            //Split into a string array, look at the first index and decide what to do
+            //if "move" then look at next index and see if its a direction and then move the palyer that way
+            //move east
+            //e
+            //move e
+            //move left
 
         }
 

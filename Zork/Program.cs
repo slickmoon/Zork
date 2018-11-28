@@ -31,10 +31,9 @@ namespace Zork
 
                 while (!Globals.exitRequested)
                 {
-
-                    gameState = currentDisplay.Run(); //player does stuff
-
-                    switch (gameState) //update the game state based on player feedback
+                    gameState = currentDisplay.Run(); //Input
+                    
+                    switch (gameState) //update the game state
                     {
                         case GameStates.MenuScreen:
                             currentDisplay = mainMenu;
@@ -49,6 +48,7 @@ namespace Zork
                             currentDisplay = mainMenu;
                             break;
                     }
+                    
                 }
 
                 Console.WriteLine("Now Exiting..."); //Game Over

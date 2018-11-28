@@ -11,8 +11,13 @@ namespace Zork
         private Game currentGame = new Game();
         public override GameStates Run()
         {
-            currentGame.Run();
-            return GameStates.MenuScreen;
+            while(!currentGame.gameOver)
+            {
+                currentGame.Run();
+                //return GameStates.MenuScreen;
+            }
+
+            return GameStates.MainMenu;
         }
     }
 }

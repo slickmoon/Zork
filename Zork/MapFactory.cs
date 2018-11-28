@@ -9,7 +9,6 @@ namespace Zork
 {
     class MapFactory
     {
-        
         public void ReadMap()
         {
             string[] mapstring = File.ReadAllLines(@"../../Assets/map.txt");

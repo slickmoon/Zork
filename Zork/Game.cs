@@ -90,9 +90,11 @@ namespace Zork
         {
 
             Actions thisAction;
+            actionToDo = Actions.Blank;
             if (input.Contains("move", StringComparison.CurrentCultureIgnoreCase)) 
             {
-                thisAction  = Actions.Move;
+                actionToDo  = Actions.Move;
+                return true;
             }
 
             switch(thisAction)
@@ -101,6 +103,7 @@ namespace Zork
                     Player.Move(direction);
                 break;
             }
+            return false;
         }
 
     }

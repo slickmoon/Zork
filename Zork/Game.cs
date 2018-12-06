@@ -11,6 +11,7 @@ namespace Zork
         private Player p1;
         private List<Location> locations;
         public bool gameOver = false;
+        private enum actions {Move, Inventory, Fight};
 
         public Game()
         {
@@ -23,17 +24,16 @@ namespace Zork
             p1 = new Player("Me", "Me", "It's you, the hero of our story", locations[0]); //always set to start location
         }
 
-        public void Run()
+        public void Input()
         {
             //Show player current location
             Console.WriteLine(p1.CurrentLoc.name);
 
             //Get player input
             Console.Write(" Please enter a command: ");
-
-            string rawInput = "";
-            rawInput = Console.ReadLine();
             
+            Action(Console.ReadLine());
+
             //TODO: Parse input to find out what the player wants to do
             //Split into a string array, look at the first index and decide what to do
             //if "move" then look at next index and see if its a direction and then move the palyer that way
@@ -51,5 +51,22 @@ namespace Zork
         //Location List
         //Monsters
         //Items list
+
+        void Action(string input) 
+        {
+            if (input.Contains("move", StringComparison.CurrentCultureIgnoreCase)) 
+            {
+                actions = actions.Move;
+
+            }
+
+            switch(actions)
+            {
+                case actions.Move:
+                    Player.Move(direction);
+                break;
+            }
+        }
+
     }
 }

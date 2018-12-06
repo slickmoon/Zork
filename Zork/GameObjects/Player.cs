@@ -45,7 +45,7 @@ namespace Zork
                         break;
                 }
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
                 //if the location doesn't exist, then dont move there
                 Console.WriteLine("There is a wall there");

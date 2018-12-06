@@ -11,7 +11,7 @@ namespace Zork
         private Player p1;
         private List<Location> locations;
         public bool gameOver = false;
-        private enum actions {Move, Inventory, Fight};
+
 
         public Game()
         {
@@ -24,15 +24,49 @@ namespace Zork
             p1 = new Player("Me", "Me", "It's you, the hero of our story", locations[0]); //always set to start location
         }
 
-        public void Input()
+        public void Run()
         {
-            //Show player current location
-            Console.WriteLine(p1.CurrentLoc.name);
 
+            while (!gameOver) //Main game loop
+            {
+                Actions actionToDo;
+                //Process Input
+                actionToDo = ProcessInput();
+                //Update Game
+                //TODO: Create ActionProcessing Classes and call one of them here
+
+                //Show output to player
+                //Show player current location
+                //Console.WriteLine(p1.CurrentLoc.name);
+            }
+        }
+
+        public Actions ProcessInput()
+        {
             //Get player input
-            Console.Write(" Please enter a command: ");
             
-            Action(Console.ReadLine());
+            bool goodInput = false;
+            Actions validAction = Actions.Blank;
+            string input = "";
+
+            do
+            {
+                Console.Write("Please enter a command: ");
+                input = Console.ReadLine();
+
+                if (!String.IsNullOrWhiteSpace(input))
+                {
+                    input = input.Trim();
+                    goodInput = GetAction(input, out validAction);
+                }
+                else
+                {
+                    Console.WriteLine("I don't understand that");
+                }
+
+            } while (!goodInput);
+
+            return validAction;
 
             //TODO: Parse input to find out what the player wants to do
             //Split into a string array, look at the first index and decide what to do
@@ -52,17 +86,18 @@ namespace Zork
         //Monsters
         //Items list
 
-        void Action(string input) 
+        bool GetAction(string input, out Actions actionToDo)    //>move east
         {
+
+            Actions thisAction;
             if (input.Contains("move", StringComparison.CurrentCultureIgnoreCase)) 
             {
-                actions = actions.Move;
-
+                thisAction  = Actions.Move;
             }
 
-            switch(actions)
+            switch(thisAction)
             {
-                case actions.Move:
+                case Actions.Move:
                     Player.Move(direction);
                 break;
             }

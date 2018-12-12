@@ -16,7 +16,7 @@ namespace Zork
             currentLoc = startLoc;
         }
 
-        public static void Move(Directions newdirection) 
+        public void Move(Directions newdirection) 
         {
             try
             {

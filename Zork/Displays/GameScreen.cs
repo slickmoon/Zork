@@ -12,7 +12,7 @@ namespace Zork
         public override GameStates Run()
         {
             currentGame.Run();
-            return GameStates.MainMenu;
+            return GameStates.MenuScreen;
         }
     }
 }

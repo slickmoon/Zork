@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\ActionBase.cs" />
+    <Compile Include="Actions\ActionMove.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="Displays\Credits.cs" />
@@ -69,6 +71,7 @@
     <Content Include="Assets\menuArt.txt" />
     <Content Include="Assets\map.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

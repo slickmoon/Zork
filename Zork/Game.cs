@@ -29,25 +29,26 @@ namespace Zork
 
             while (!gameOver) //Main game loop
             {
-                Actions actionToDo;
+                ActionBase currentAction;
                 //Process Input
-                actionToDo = ProcessInput();
+                currentAction = ProcessInput();
                 //Update Game
                 //TODO: Create ActionProcessing Classes and call one of them here
-
+                currentAction.Do();
                 //Show output to player
                 //Show player current location
                 //Console.WriteLine(p1.CurrentLoc.name);
             }
         }
 
-        public Actions ProcessInput()
+        public ActionBase ProcessInput()
         {
             //Get player input
             
             bool goodInput = false;
             Actions validAction = Actions.Blank;
             string input = "";
+            string[] inputArray = { };
 
             do
             {
@@ -57,7 +58,8 @@ namespace Zork
                 if (!String.IsNullOrWhiteSpace(input))
                 {
                     input = input.Trim();
-                    goodInput = GetAction(input, out validAction);
+                    inputArray = input.Split(' ');
+                    goodInput = GetAction(inputArray, out validAction);
                 }
                 else
                 {
@@ -66,8 +68,16 @@ namespace Zork
 
             } while (!goodInput);
 
-            return validAction;
-
+            switch(validAction)
+            {
+                case Actions.Move:
+                    return new ActionMove(inputArray, p1);
+                //case Actions.Attack:
+                //return new ActionAttack();
+                default:
+                    break;
+            }
+            return null;
             //TODO: Parse input to find out what the player wants to do
             //Split into a string array, look at the first index and decide what to do
             //if "move" then look at next index and see if its a direction and then move the palyer that way
@@ -86,22 +96,29 @@ namespace Zork
         //Monsters
         //Items list
 
-        bool GetAction(string input, out Actions actionToDo)    //>move east
+        bool GetAction(string[] inputArray, out Actions actionToDo)    //>move east
         {
-
-            Actions thisAction;
             actionToDo = Actions.Blank;
-            if (input.Contains("move", StringComparison.CurrentCultureIgnoreCase)) 
-            {
-                actionToDo  = Actions.Move;
-                return true;
-            }
 
-            switch(thisAction)
+            foreach (string s in inputArray)
             {
-                case Actions.Move:
-                    Player.Move(direction);
-                break;
+                string sProcessed = s.ToLower();
+                switch (sProcessed)
+                {
+                    case "move" :
+                        actionToDo = Actions.Move;
+                        return true;
+                    case "put":
+                        //actionsToDo = Actions.MoveItem;
+                        return true;
+                    case "hit":
+                        //actionToDo = Actions.Attack;
+                        return true;
+                    default:
+                        break;
+
+                }
+
             }
             return false;
         }

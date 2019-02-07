@@ -60,6 +60,7 @@
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameStates.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="CustomExceptions.cs" />
     <Compile Include="MapFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

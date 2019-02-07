@@ -9,6 +9,7 @@ namespace Zork
 {
     class Location : GameObject
     {
+        public int mapID;
         public Location northLoc;
         public Location southLoc;
         public Location eastLoc;
@@ -18,9 +19,10 @@ namespace Zork
 
         public bool newLoc = true; //all locations are new at first, when a player enters the game will display the descriptive text if it is the first time the player has been here
 
-        public Location(string name,string description):base(name,"",description)
+        public Location(int mapID, string name,string description):base(name,"",description)
         {
             
         }
+        
     }
 }

@@ -24,7 +24,7 @@ namespace Zork
             {
                 for (int i = 0; i < inputArray.Length; i++)
                 {
-         //nintendo
+
                     switch(inputArray[i].ToLower())
                     {
                         case "east":

@@ -9,8 +9,8 @@ namespace Zork
 {
     class MapFactory
     {
-        List<Location> map = new List<Location>();
-        public void ReadMap()
+        private List<Location> map = new List<Location>();
+        public List<Location> ReadMap()
         {
             string[] mapstring = File.ReadAllLines(@"../../Assets/map.txt");
             int linenumber = 0;
@@ -26,9 +26,13 @@ namespace Zork
             foreach(string s in mapstring)
             {
                 linenumber++;
-                if (String.IsNullOrEmpty(s.Trim()))
+                if (String.IsNullOrEmpty(s.Trim()) && loadState.Equals("names"))
                 {
                     loadState = "linking";
+                } else if (String.IsNullOrEmpty(s.Trim()) && loadState.Equals("linking"))
+                {
+                    //ended loading the map
+                    break;
                 }
                 switch(loadState)
                 {
@@ -76,26 +80,91 @@ namespace Zork
 
                             try
                             {
-                                string currMapID = splitline[0];
-                                string nstring = splitline[1]; 
-                                string estring = splitline[2];
-                                string wstring = splitline[3];
-                                string sstring = splitline[4];
-                                string ustring = splitline[5];
-                                string dstring = splitline[6];
+                                int currMapID = ReadMapID(splitline[0],linenumber);
+                                int northid = ReadMapID(splitline[1], linenumber); 
+                                int eastid = ReadMapID(splitline[2], linenumber);                        
+                                int westid = ReadMapID(splitline[3], linenumber);
+                                int southid = ReadMapID(splitline[4], linenumber);
+                                int upid = ReadMapID(splitline[5], linenumber);
+                                int downid = ReadMapID(splitline[6], linenumber);
+
+                                
+                                
+                                
                             }
                             catch (Exception ex)
                             {
-
+                                Debug.Error(ex.Message);
                             }
                         }
                         break;
                 }
-                
             }
         }
 
+        int ReadMapID(string newMapIDString, int linenumber)
+        {
+            if (!string.IsNullOrEmpty(newMapIDString))
+            {           
+
+                int mapID;
+                if (!int.TryParse(newMapIDString, out mapID))
+                {
+                    throw new MapException("mapID for line " + linenumber + " is invalid, please check the map.txt file");
+                }
+                else
+                {
+                    return mapID;
+                }
+            } else
+            {
+                return 0;
+            }        
+            
+        }
         //TODO: Create LinkLocations(int l1, int l2);
+        void LinkLocations(int sourceloc, int targetloc, Directions dir)
+        {
+            Location Sourceloc = new Location(0, "", "");
+            Location Targetloc = new Location(0, "", "");
+            
+            
+            foreach (Location l in map)
+            {
+                if (l.mapID.Equals(sourceloc))
+                {
+                    Sourceloc = l;
+                }
+                if(l.mapID.Equals(targetloc) && !l.mapID.Equals(sourceloc))
+                {
+                    Targetloc = l;
+                }
+                else
+                {
+                    throw new Exception("Cannot link a location to itself");
+                }
+            }
+            //loc1 and loc2 may be filled with a Location now
+
+            //Sourceloc.northLoc = Targetloc;
+            //Sourceloc.westLoc = Targetloc;
+
+
+            switch (dir)
+            {
+                case Directions.East:
+                    Sourceloc.eastLoc = Targetloc;
+                    break;
+
+                case Directions.North:
+                    Sourceloc.northLoc = Targetloc;
+                    break;
+            }
+
+
+
+
+        }
     }
 
 
@@ -104,6 +173,6 @@ namespace Zork
     //Items
     //Creatures
     //C:\file.txt
-
+   
 
 }

@@ -8,7 +8,7 @@ using System.IO;
 namespace Zork
 {
     class MapFactory
-    {
+    { 
         private List<Location> map = new List<Location>();
         public List<Location> ReadMap()
         {
@@ -39,7 +39,7 @@ namespace Zork
                     case "names":
                         if (!String.IsNullOrEmpty(s.Trim()))
                         {
-                            string[] splitline = s.Split(',');
+                            string[] splitline = s.Split('.');
 
                             try
                             {
@@ -76,10 +76,11 @@ namespace Zork
                     case "linking":
                         if (!String.IsNullOrEmpty(s.Trim()))
                         {
-                            string[] splitline = s.Split(',');
+                            string[] splitline = s.Split('.');
 
                             try
                             {
+
                                 int currMapID = ReadMapID(splitline[0],linenumber);
                                 int northid = ReadMapID(splitline[1], linenumber); 
                                 int eastid = ReadMapID(splitline[2], linenumber);                        
@@ -88,9 +89,16 @@ namespace Zork
                                 int upid = ReadMapID(splitline[5], linenumber);
                                 int downid = ReadMapID(splitline[6], linenumber);
 
-                                
-                                
-                                
+
+                                LinkLocations(currMapID, northid,Directions.North);
+                                LinkLocations(currMapID, eastid, Directions.East);
+                                LinkLocations(currMapID, westid, Directions.West);
+                                LinkLocations(currMapID, southid, Directions.South);
+                                LinkLocations(currMapID, upid, Directions.Up);
+                                LinkLocations(currMapID, downid, Directions.Down);
+
+
+
                             }
                             catch (Exception ex)
                             {
@@ -98,8 +106,12 @@ namespace Zork
                             }
                         }
                         break;
+                    default:
+                        break;
                 }
+                
             }
+            return map;
         }
 
         int ReadMapID(string newMapIDString, int linenumber)
@@ -125,44 +137,56 @@ namespace Zork
         //TODO: Create LinkLocations(int l1, int l2);
         void LinkLocations(int sourceloc, int targetloc, Directions dir)
         {
-            Location Sourceloc = new Location(0, "", "");
-            Location Targetloc = new Location(0, "", "");
-            
-            
-            foreach (Location l in map)
+            if(!sourceloc.Equals(0) || !targetloc.Equals(0)) //Zero is not a valid location, don't do anything if the source or the target zero
             {
-                if (l.mapID.Equals(sourceloc))
+                Location Sourceloc = new Location(0, "", "");
+                Location Targetloc = new Location(0, "", "");
+
+
+                foreach (Location l in map)
                 {
-                    Sourceloc = l;
+                    if (l.mapID.Equals(sourceloc))
+                    {
+                        Sourceloc = l;
+                    }
+                    if (l.mapID.Equals(targetloc) && !l.mapID.Equals(sourceloc))
+                    {
+                        Targetloc = l;
+                    }
+                    else
+                    {
+                        throw new Exception("Cannot link a location to itself");
+                    }
                 }
-                if(l.mapID.Equals(targetloc) && !l.mapID.Equals(sourceloc))
+                //loc1 and loc2 may be filled with a Location now
+
+                //Sourceloc.northLoc = Targetloc;
+                //Sourceloc.westLoc = Targetloc;
+
+
+                switch (dir)
                 {
-                    Targetloc = l;
-                }
-                else
-                {
-                    throw new Exception("Cannot link a location to itself");
+                    case Directions.East:
+                        Sourceloc.eastLoc = Targetloc;
+                        break;
+                    case Directions.North:
+                        Sourceloc.northLoc = Targetloc;
+                        break;
+                    case Directions.West:
+                        Sourceloc.westLoc = Targetloc;
+                        break;
+                    case Directions.South:
+                        Sourceloc.southLoc = Targetloc;
+                        break;
+                    case Directions.Up:
+                        Sourceloc.upLoc = Targetloc;
+                        break;
+                    case Directions.Down:
+                        Sourceloc.downLoc = Targetloc;
+                        break;
                 }
             }
-            //loc1 and loc2 may be filled with a Location now
-
-            //Sourceloc.northLoc = Targetloc;
-            //Sourceloc.westLoc = Targetloc;
-
-
-            switch (dir)
-            {
-                case Directions.East:
-                    Sourceloc.eastLoc = Targetloc;
-                    break;
-
-                case Directions.North:
-                    Sourceloc.northLoc = Targetloc;
-                    break;
-            }
-
-
-
+            
 
         }
     }

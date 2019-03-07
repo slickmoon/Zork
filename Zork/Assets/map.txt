@@ -1,7 +1,5 @@
-﻿1,Front Door,It's a door
-2,House,It's a house
+﻿1|Front Door|It's a door - it has a key in it.
+2|House|It's a house
 
-1,2,,,,,
-2,,1,,,,
-
-//MapID, North, East, West, South, 
+1|2|||||
+2||1||||

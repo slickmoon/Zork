@@ -8,7 +8,14 @@ namespace Zork
 {
     class GameScreen : Display
     {
-        private Game currentGame = new Game();
+        private Game currentGame;
+
+        public GameScreen()
+        {
+            GameFactory gameBuilder = new GameFactory();
+
+            currentGame = gameBuilder.BuildGame();
+        }
         public override GameStates Run()
         {
             currentGame.Run();

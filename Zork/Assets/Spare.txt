@@ -1,0 +1,31 @@
+﻿
+//MapID|North|East|West|South|Up|Down 
+
+
+door%Its a door|window|grass
+basement|wall|underground
+
+Underground%This is the underground, there is an angery ogre here. He's mad and he swings an axe at you and misses.|Hovel%It's a hole in the wall that something lives in
+Hell%Demon spawn lives here|door%yes|GoldMine%Get money here
+
+-
+
+Roof
+
+-
+
+Floor
+
+//string[] wholeline = s.Split("|")
+//string[] locatondescription = s.Split("%")
+
+
+
+
+x|x|x
+x|x|x
+x|x|x
+
+ |x| 
+x|x|
+ | |

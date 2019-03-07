@@ -71,6 +71,7 @@
   <ItemGroup>
     <Content Include="Assets\menuArt.txt" />
     <Content Include="Assets\map.txt" />
+    <Content Include="Assets\Spare.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

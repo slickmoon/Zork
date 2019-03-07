@@ -52,10 +52,14 @@ namespace Zork
                 }
 
                 Console.WriteLine("Now Exiting..."); //Game Over
+                Console.ReadLine();
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.ReadLine();
+
             }
+            Console.ReadLine();
         }
             
     }

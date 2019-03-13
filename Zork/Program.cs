@@ -44,6 +44,9 @@ namespace Zork
                         case GameStates.Exit:
                             Globals.exitRequested = true;
                             break;
+                        case GameStates.MainGame:
+                            currentDisplay = mainGame;
+                            break;
                         default:
                             currentDisplay = mainMenu;
                             break;

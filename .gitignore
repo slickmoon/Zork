@@ -12,6 +12,8 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+/Zork/Debug.txt
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -328,5 +330,3 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-
-*.txt

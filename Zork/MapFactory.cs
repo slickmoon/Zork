@@ -39,7 +39,7 @@ namespace Zork
                     case "names":
                         if (!String.IsNullOrEmpty(s.Trim()))
                         {
-                            string[] splitline = s.Split('.');
+                            string[] splitline = s.Split('|');
 
                             try
                             {
@@ -76,7 +76,7 @@ namespace Zork
                     case "linking":
                         if (!String.IsNullOrEmpty(s.Trim()))
                         {
-                            string[] splitline = s.Split('.');
+                            string[] splitline = s.Split('|');
 
                             try
                             {

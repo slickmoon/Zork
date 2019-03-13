@@ -164,8 +164,6 @@ DocProject/Help/html
 # Click-Once directory
 publish/
 
-#hi
-
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
@@ -330,3 +328,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+Zork/Debug.txt

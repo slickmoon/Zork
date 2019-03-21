@@ -40,7 +40,7 @@ namespace Zork
                         if (!String.IsNullOrEmpty(s.Trim()))
                         {
                             string[] splitline = s.Split('|');
-
+                            
                             try
                             {
                                 string mapIDstring = splitline[0];
@@ -83,7 +83,7 @@ namespace Zork
 
                                 int currMapID = ReadMapID(splitline[0],linenumber);
                                 int northid = ReadMapID(splitline[1], linenumber); 
-                                int eastid = ReadMapID(splitline[2], linenumber);                        
+                                int eastid = ReadMapID(splitline[2], linenumber);
                                 int westid = ReadMapID(splitline[3], linenumber);
                                 int southid = ReadMapID(splitline[4], linenumber);
                                 int upid = ReadMapID(splitline[5], linenumber);
@@ -142,6 +142,10 @@ namespace Zork
                 Location Sourceloc = new Location(0, "", "");
                 Location Targetloc = new Location(0, "", "");
 
+                if (sourceloc == targetloc)
+                {
+                    throw new Exception("Cannot link a location to itself");
+                }
 
                 foreach (Location l in map)
                 {
@@ -149,15 +153,12 @@ namespace Zork
                     {
                         Sourceloc = l;
                     }
-                    if (l.mapID.Equals(targetloc) && !l.mapID.Equals(sourceloc))
+                    if (l.mapID.Equals(targetloc))
                     {
                         Targetloc = l;
                     }
-                    else
-                    {
-                        throw new Exception("Cannot link a location to itself");
-                    }
                 }
+                
                 //loc1 and loc2 may be filled with a Location now
 
                 //Sourceloc.northLoc = Targetloc;

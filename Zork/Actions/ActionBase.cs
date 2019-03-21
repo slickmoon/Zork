@@ -8,9 +8,10 @@ namespace Zork
 {
     class ActionBase
     {
-        public void Do()
+        public virtual void Do()
         {
             //Do something when every action occurs
         }
+        
     }
 }

@@ -21,7 +21,7 @@ namespace Zork
 
         public Location(int mapID, string name,string description):base(name,"",description)
         {
-            
+            this.mapID = mapID;
         }
         
     }

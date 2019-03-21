@@ -18,8 +18,9 @@ namespace Zork
             this.currentPlayer = currentPlayer;
         }
 
-        public new void Do()
+        public override void Do()
         {
+            base.Do(); //Do the base Do() function that ActionMove inherits from in ActionBase
             try
             {
                 for (int i = 0; i < inputArray.Length; i++)

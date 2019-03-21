@@ -38,7 +38,7 @@ namespace Zork
                 currentAction = ProcessInput();
                 //Update Game
                 //TODO: Create ActionProcessing Classes and call one of them here
-                currentAction.Do();
+                currentAction.Do(); //This calls the base Do(), not the override Do()
                 //Show output to player
                 //Show player current location
                 //Console.WriteLine(p1.CurrentLoc.name);
@@ -106,7 +106,12 @@ namespace Zork
 
             foreach (string s in inputArray)
             {
+
                 string sProcessed = s.ToLower();
+                if (sProcessed.Equals("north") || sProcessed.Equals("south") || sProcessed.Equals("east") || sProcessed.Equals("west") || sProcessed.Equals("up") || sProcessed.Equals("down"))
+                {
+                    sProcessed = "move";
+                }
                 switch (sProcessed)
                 {
                     case "move" :

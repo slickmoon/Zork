@@ -49,6 +49,7 @@ namespace Zork
             {
                 //if the location doesn't exist, then dont move there
                 Console.WriteLine("There is a wall there");
+                //TODO: Put the player back to somewhere valid if they are somewhere invalid???
             }
             catch(Exception ex)
             {

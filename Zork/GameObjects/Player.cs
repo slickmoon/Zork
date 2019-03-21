@@ -16,7 +16,7 @@ namespace Zork
             currentLoc = startLoc;
         }
 
-        public void Move(Directions newdirection) 
+        public void Move(Directions newdirection)   //TODO: update this function so that the player can't move to a blank location (mapID = 0)
         {
             try
             {

@@ -24,7 +24,7 @@ namespace Zork
                 GameStates gameState = GameStates.MenuScreen;
                 Display mainMenu = new Menu();
                 Display credits = new Credits();
-                Display mainGame = new GameScreen();
+                Display mainGame;
 
 
                 Display currentDisplay = mainMenu; //starting on main menu
@@ -45,13 +45,13 @@ namespace Zork
                             Globals.exitRequested = true;
                             break;
                         case GameStates.MainGame:
+                            mainGame = new GameScreen();
                             currentDisplay = mainGame;
                             break;
                         default:
                             currentDisplay = mainMenu;
                             break;
                     }
-                    
                 }
 
                 Console.WriteLine("Now Exiting..."); //Game Over

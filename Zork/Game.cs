@@ -31,7 +31,7 @@ namespace Zork
         public void Run()
         {
 
-            while (!gameOver) //Main game loop
+            while (!gameOver && !Globals.exitRequested) //Main game loop
             {
                 ActionBase currentAction;
                 //Process Input
@@ -78,6 +78,10 @@ namespace Zork
                     return new ActionMove(inputArray, p1);
                 //case Actions.Attack:
                 //return new ActionAttack();
+                case Actions.Look:
+                    return new ActionLook(inputArray, p1);
+                case Actions.Exiting:
+                    return new ActionExit(inputArray, this);
                 default:
                     break;
             }
@@ -116,6 +120,12 @@ namespace Zork
                 {
                     case "move" :
                         actionToDo = Actions.Move;
+                        return true;
+                    case "look" :
+                        actionToDo = Actions.Look;
+                        return true;
+                    case "exit":
+                        actionToDo = Actions.Exiting;
                         return true;
                     case "put":
                         //actionsToDo = Actions.MoveItem;

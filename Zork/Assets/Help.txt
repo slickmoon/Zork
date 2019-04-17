@@ -1,0 +1,14 @@
+﻿This is ZORK!
+
+The following are the available commands:
+
+Help - Show this screen
+Move - Move in a direction, must be followed by a direction
+North - Move North
+South - Move South
+East - Move East
+West - Move West
+Up - Move Up
+Down - Move Down
+Look - View details, if followed by an object will show details for that object
+Exit - Exit the game and return to main menu

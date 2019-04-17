@@ -26,22 +26,35 @@ namespace Zork
             this.map = map;
             p1 = newPlayer;
             //p1 = new Player("Me", "Me", "It's you, the hero of our story", map[0]); //always set to start location
+
+            /*
+            TODO:
+            Add Inventory System
+            More Dynamic Actions System
+            NPC's
+           */
         }
 
         public void Run()
         {
 
+            Console.Clear();
             while (!gameOver && !Globals.exitRequested) //Main game loop
             {
                 ActionBase currentAction;
+
+                //Show current game state
+                DisplayState();
+
                 //Process Input
                 currentAction = ProcessInput();
                 //Update Game
                 //TODO: Create ActionProcessing Classes and call one of them here
-                currentAction.Do(); //This calls the base Do(), not the override Do()
+                currentAction.Do(); 
+
                 //Show output to player
                 //Show player current location
-                //Console.WriteLine(p1.CurrentLoc.name);
+               
             }
         }
 
@@ -69,7 +82,10 @@ namespace Zork
                 {
                     Console.WriteLine("I don't understand that");
                 }
-
+                if(!goodInput)
+                {
+                    Console.WriteLine("I don't understand that");
+                }
             } while (!goodInput);
 
             switch(validAction)
@@ -80,20 +96,32 @@ namespace Zork
                 //return new ActionAttack();
                 case Actions.Look:
                     return new ActionLook(inputArray, p1);
-                case Actions.Exiting:
+                case Actions.Exit:
                     return new ActionExit(inputArray, this);
+                case Actions.Help:
+                    return new ActionHelp();
                 default:
                     break;
             }
             return null;
-            //TODO: Parse input to find out what the player wants to do
-            //Split into a string array, look at the first index and decide what to do
+           
             //if "move" then look at next index and see if its a direction and then move the palyer that way
             //move east
             //e
             //move e
             //move left
 
+        }
+
+        private void DisplayState()
+        { 
+            //Show the current location
+            Console.WriteLine(p1.CurrentLoc.name);
+            if(p1.CurrentLoc.newLoc)
+            {
+                Console.WriteLine(p1.CurrentLoc.description);
+                p1.CurrentLoc.newLoc = false;
+            }
         }
 
         private void LinkLocations()
@@ -125,7 +153,10 @@ namespace Zork
                         actionToDo = Actions.Look;
                         return true;
                     case "exit":
-                        actionToDo = Actions.Exiting;
+                        actionToDo = Actions.Exit;
+                        return true;
+                    case "help":
+                        actionToDo = Actions.Help;
                         return true;
                     case "put":
                         //actionsToDo = Actions.MoveItem;

@@ -10,7 +10,7 @@ namespace Zork
     {
         public virtual void Do()
         {
-            //Do something when every action occurs
+            Console.Clear(); //When every action runs, clear the screen first
         }
         
     }

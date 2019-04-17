@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Actions\ActionBase.cs" />
     <Compile Include="Actions\ActionExit.cs" />
+    <Compile Include="Actions\ActionHelp.cs" />
     <Compile Include="Actions\ActionLook.cs" />
     <Compile Include="Actions\ActionMove.cs" />
     <Compile Include="Enums.cs" />
@@ -71,6 +72,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Help.txt" />
     <Content Include="Assets\menuArt.txt" />
     <Content Include="Assets\map.txt" />
     <Content Include="Assets\Spare.txt" />

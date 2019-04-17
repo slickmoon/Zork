@@ -64,7 +64,23 @@ namespace Zork
 
         void Move(Location newLoc)
         {
-            CurrentLoc = newLoc;
+            if(newLoc != null)
+            {
+                if (newLoc.mapID != 0)
+                {
+                    CurrentLoc = newLoc;
+                }
+                else
+                {
+                    Console.WriteLine("There is a wall there");
+                    //Debug.Log("Attempted to move to mapid 0");
+                }
+            }
+            else
+            {
+                Debug.Log("Attempted to move to a null mapid");
+            }
+              
         }
 
         public Location CurrentLoc
@@ -76,11 +92,6 @@ namespace Zork
             set
             {
                 currentLoc = value;
-                if(currentLoc.newLoc)
-                {
-                    Console.WriteLine(currentLoc.description);
-                }
-                currentLoc.newLoc = false;
             }
         }
         

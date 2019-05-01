@@ -68,6 +68,10 @@ namespace Zork
             {
                 if (newLoc.mapID != 0)
                 {
+                    if (CurrentLoc == newLoc)
+                    {
+                        Console.WriteLine("This place looks familiar....");
+                    }
                     CurrentLoc = newLoc;
                 }
                 else
@@ -81,6 +85,11 @@ namespace Zork
                 Debug.Log("Attempted to move to a null mapid");
             }
               
+        }
+
+        void Move()
+        {
+
         }
 
         public Location CurrentLoc

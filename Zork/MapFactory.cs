@@ -84,8 +84,8 @@ namespace Zork
                                 int currMapID = ReadMapID(splitline[0],linenumber);
                                 int northid = ReadMapID(splitline[1], linenumber); 
                                 int eastid = ReadMapID(splitline[2], linenumber);
-                                int westid = ReadMapID(splitline[3], linenumber);
-                                int southid = ReadMapID(splitline[4], linenumber);
+                                int southid = ReadMapID(splitline[3], linenumber);
+                                int westid = ReadMapID(splitline[4], linenumber);
                                 int upid = ReadMapID(splitline[5], linenumber);
                                 int downid = ReadMapID(splitline[6], linenumber);
 

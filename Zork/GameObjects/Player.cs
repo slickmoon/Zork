@@ -87,9 +87,9 @@ namespace Zork
               
         }
 
-        void Move()
+        void Move(int mapID) 
         {
-
+        
         }
 
         public Location CurrentLoc

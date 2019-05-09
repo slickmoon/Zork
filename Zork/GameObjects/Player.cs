@@ -9,10 +9,14 @@ namespace Zork
     class Player : GameObject
     {
         private int hitPoints = 10;
+        private int maxHitPoints;
         private Location currentLoc;
+
+        public Game CurrentGame;
 
         public Player(string name, string shortname, string description, Location startLoc) : base(name, shortname, description)
         {
+            maxHitPoints = hitPoints;
             currentLoc = startLoc;
         }
 
@@ -103,18 +107,44 @@ namespace Zork
                 currentLoc = value;
             }
         }
-        
+
         public int Health
         {
             get
             {
                 return hitPoints;
-            
             }
+        }
+        
+        public void AddHealth
+        {
             set
             {
-                hitPoints = value;
+                hitPoints += value;
+                if(hitPoint > maxHitPoints)
+                {
+                    Console.WriteLine("Health restored to full!");
+                    hitPoints = maxHitPoints;
+                }
                 Console.WriteLine("Your health is now: " + hitPoints);
+            }
+        }
+
+        public void RemoveHealth
+        {
+            set
+            {
+                hitPoints -= value;
+                If(hitPoints <= 0)
+                {
+                    Console.WriteLine("You are dead!");
+                    CurrentGame.GameOver = true;
+                }
+                else
+                {
+                    Console.WriteLine("Your health is now: " + hitPoints);
+                }
+                
             }
         }
         //TODO: Add Look method to look at items

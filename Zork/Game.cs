@@ -10,7 +10,7 @@ namespace Zork
     {
         private Player p1;
         private List<Location> map;
-        public bool gameOver = false;
+        public bool GameOver = false;
 
 
         public Game(List<Location> map, Player newPlayer)
@@ -25,6 +25,7 @@ namespace Zork
             */      
             this.map = map;
             p1 = newPlayer;
+            p1.CurrentGame = this;
             //p1 = new Player("Me", "Me", "It's you, the hero of our story", map[0]); //always set to start location
 
             /*
@@ -39,7 +40,7 @@ namespace Zork
         {
 
             Console.Clear();
-            while (!gameOver && !Globals.exitRequested) //Main game loop
+            while (!GameOver && !Globals.exitRequested) //Main game loop
             {
                 ActionBase currentAction;
 
@@ -175,3 +176,11 @@ namespace Zork
 
     }
 }
+
+/*Add Action UseItem
+    Determine if the player wants to use this action
+    Create an instance of this action
+    Action needs to figure out what player is trying to use
+    Action call the item's Use()
+    Action check single use and destroy item if necessary
+*/

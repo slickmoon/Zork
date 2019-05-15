@@ -101,6 +101,8 @@ namespace Zork
                     return new ActionExit(inputArray, this);
                 case Actions.Help:
                     return new ActionHelp();
+                case Actions.Use:
+                    return new ActionUse(inputArray, p1);
                 default:
                     break;
             }
@@ -158,6 +160,9 @@ namespace Zork
                         return true;
                     case "help":
                         actionToDo = Actions.Help;
+                        return true;
+                    case "use":
+                        actionToDo = Actions.Use;
                         return true;
                     case "put":
                         //actionsToDo = Actions.MoveItem;

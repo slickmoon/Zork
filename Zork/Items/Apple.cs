@@ -6,7 +6,6 @@ namespace Zork
     {
         public int hpToRestore;
 
-
         public Apple() : base(name, shortname, description)
         {
             this.name = "Apple";

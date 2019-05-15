@@ -17,7 +17,7 @@ namespace Zork
 
         public void Use()
         {
-            Console.WriteLine("You used an " + name + ".");
+            Console.WriteLine("You used " + name + ".");
         }
     }
 }

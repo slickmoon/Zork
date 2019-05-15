@@ -22,7 +22,7 @@ namespace Zork
             base.Do(); //Do the base Do() function that ActionMove inherits from in ActionBase
             try
             {
-                currentGame.gameOver = true;
+                currentGame.GameOver = true;
                 for (int i = 0; i < inputArray.Length; i++)
                 {
                     switch (inputArray[i].ToLower()) //TODO: 

@@ -11,6 +11,7 @@ namespace Zork
         private int hitPoints = 10;
         private int maxHitPoints;
         private Location currentLoc;
+        private Inventory inventory;
 
         public Game CurrentGame;
 
@@ -18,6 +19,10 @@ namespace Zork
         {
             maxHitPoints = hitPoints;
             currentLoc = startLoc;
+            inventory = new Inventory("Bag","Bag");
+            Item i1 = new Apple();
+            inventory.AddItem(i1);
+
         }
 
         public void Move(Directions newdirection)   //TODO: update this function so that the player can't move to a blank location (mapID = 0)
@@ -108,6 +113,18 @@ namespace Zork
             }
         }
 
+        public Inventory Inventory
+        {
+            get
+            {
+                return inventory;
+            }
+            set
+            {
+                inventory = value;
+            }
+        }
+
         public int Health
         {
             get
@@ -116,35 +133,29 @@ namespace Zork
             }
         }
         
-        public void AddHealth
+        public void AddHealth(int value)
         {
-            set
+            hitPoints += value;
+            if(hitPoints > maxHitPoints)
             {
-                hitPoints += value;
-                if(hitPoint > maxHitPoints)
-                {
-                    Console.WriteLine("Health restored to full!");
-                    hitPoints = maxHitPoints;
-                }
-                Console.WriteLine("Your health is now: " + hitPoints);
+                Console.WriteLine("Health restored to full!");
+                hitPoints = maxHitPoints;
             }
+            Console.WriteLine("Your health is now: " + hitPoints);
         }
 
-        public void RemoveHealth
+        public void RemoveHealth(int value)
         {
-            set
+
+            hitPoints -= value;
+            if ((hitPoints-value) <= 0)
             {
-                hitPoints -= value;
-                If(hitPoints <= 0)
-                {
-                    Console.WriteLine("You are dead!");
-                    CurrentGame.GameOver = true;
-                }
-                else
-                {
-                    Console.WriteLine("Your health is now: " + hitPoints);
-                }
-                
+                Console.WriteLine("You are dead!");
+                CurrentGame.GameOver = true;
+            }
+            else
+            {
+                Console.WriteLine("Your health is now: " + hitPoints);
             }
         }
         //TODO: Add Look method to look at items

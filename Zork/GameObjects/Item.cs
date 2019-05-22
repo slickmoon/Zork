@@ -6,18 +6,23 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Item : GameObject
+  public class Item : GameObject
     {
-        private bool singleUse = false;
+        public bool SingleUse = false;
 
         public Item(string name, string shortname, string description) : base(name, shortname, description)
         {
 
         }
 
+        public Item() : base("Blank", "BlankItem","BlankItem")
+        { 
+            
+        }   
+
         public void Use()
         {
-            Console.WriteLine("You used " + name + ".");
+            Console.WriteLine("You used " + Name + ".");
         }
     }
 }

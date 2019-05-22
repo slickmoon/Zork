@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Zork
 {
-    class ActionHelp : ActionBase
+  public class ActionHelp : ActionBase
     {
         public ActionHelp()
         {

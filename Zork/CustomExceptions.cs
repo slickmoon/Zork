@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class MapException : Exception
+  public class MapException : Exception
     {
         public MapException()
         {
@@ -23,7 +23,7 @@ namespace Zork
         }
     }
 
-    class DuplicateMapIDException : Exception
+  public class DuplicateMapIDException : Exception
     {
         public DuplicateMapIDException()
         {

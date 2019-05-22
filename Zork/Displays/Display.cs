@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    abstract class Display
+    public abstract class Display
     {
         public abstract GameStates Run();
     }

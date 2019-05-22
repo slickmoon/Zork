@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class GameObject
+    public class GameObject
     {
-        public string name = "";
-        public string shortName = "";
-        public string description = "";
+        public string Name = "";
+        public string ShortName = "";
+        public string Description = "";
 
         public GameObject(string name, string shortname, string description)
         {
-            this.name = name;
-            this.shortName = shortname;
-            this.description = description;           
+            this.Name = name;
+            this.ShortName = shortname;
+            this.Description = description;           
+        }
+        public GameObject()
+        {
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Player : GameObject
+  public class Player : GameObject
     {
         private int hitPoints = 10;
         private int maxHitPoints;
@@ -69,7 +69,7 @@ namespace Zork
         }
 
 
-        void Move(Location newLoc)
+        public void Move(Location newLoc)
         {
             if(newLoc != null)
             {
@@ -94,9 +94,18 @@ namespace Zork
               
         }
 
-        void Move(int mapID) 
+        public void Move(int mapID) 
         {
-        
+            foreach(Location l in CurrentGame.Map)
+            {
+                if(l.mapID == mapID)
+                {
+                    currentLoc = l;
+                    return;
+                }
+            }
+            Console.WriteLine("There is no location with mapID: " + mapID.ToString());
+
         }
 
         public Location CurrentLoc

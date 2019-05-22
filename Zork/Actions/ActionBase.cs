@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class ActionBase
+    public class ActionBase
     {
         public virtual void Do()
         {

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Game
+  public class Game
     {
         private Player p1;
-        private List<Location> map;
+        public List<Location> Map;
         public bool GameOver = false;
 
 
@@ -23,7 +23,7 @@ namespace Zork
             locations.Add(new Location("House Kitchen", "", 0, 4, 0));
             locations.Add(new Location("House Laundry", "", 0, 5, 0));
             */      
-            this.map = map;
+            this.Map = map;
             p1 = newPlayer;
             p1.CurrentGame = this;
             //p1 = new Player("Me", "Me", "It's you, the hero of our story", map[0]); //always set to start location
@@ -93,6 +93,8 @@ namespace Zork
             {
                 case Actions.Move:
                     return new ActionMove(inputArray, p1);
+                case Actions.Teleport:
+                     return new ActionMove(inputArray,p1,MovementTypes.Teleport);
                 //case Actions.Attack:
                 //return new ActionAttack();
                 case Actions.Look:
@@ -103,6 +105,9 @@ namespace Zork
                     return new ActionHelp();
                 case Actions.Use:
                     return new ActionUse(inputArray, p1);
+                case Actions.Take:
+                    //return new ActionTake();
+
                 default:
                     break;
             }
@@ -119,10 +124,10 @@ namespace Zork
         private void DisplayState()
         { 
             //Show the current location
-            Console.WriteLine(p1.CurrentLoc.name);
+            Console.WriteLine(p1.CurrentLoc.Name);
             if(p1.CurrentLoc.newLoc)
             {
-                Console.WriteLine(p1.CurrentLoc.description);
+                Console.WriteLine(p1.CurrentLoc.Description);
                 p1.CurrentLoc.newLoc = false;
             }
         }
@@ -152,6 +157,9 @@ namespace Zork
                     case "move" :
                         actionToDo = Actions.Move;
                         return true;
+                    case "teleport" :
+                        actionToDo = Actions.Teleport;
+                        return true;
                     case "look" :
                         actionToDo = Actions.Look;
                         return true;
@@ -170,6 +178,9 @@ namespace Zork
                     case "hit":
                         //actionToDo = Actions.Attack;
                         return true;
+                    case "take":
+                        actionToDo = Actions.Take;
+                        return true;
                     default:
                         break;
 
@@ -181,11 +192,3 @@ namespace Zork
 
     }
 }
-
-/*Add Action UseItem
-    Determine if the player wants to use this action
-    Create an instance of this action
-    Action needs to figure out what player is trying to use
-    Action call the item's Use()
-    Action check single use and destroy item if necessary
-*/

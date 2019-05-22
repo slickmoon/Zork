@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Menu : Display
+  public class Menu : Display
     {
         public override GameStates Run()
         { 

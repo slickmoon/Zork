@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zork
+namespace Zork.Actions
 {
-  public class GameObject
+    public class ActionTake :ActionBase
     {
-        string name;
-        string shortName;
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class ActionExit : ActionBase
+  public class ActionExit : ActionBase
     {
         string[] inputArray;
         Game currentGame;

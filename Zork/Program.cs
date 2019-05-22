@@ -15,7 +15,7 @@ namespace Zork
         3: Game Screen
     */
 
-    class Program
+  public class Program
     {
         static void Main(string[] args)
         {
@@ -62,7 +62,6 @@ namespace Zork
                 Console.ReadLine();
 
             }
-            Console.ReadLine();
         }
             
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class ActionUse : ActionBase
+  public class ActionUse : ActionBase
     {
         string[] inputArray;
         Player currentPlayer;
@@ -29,22 +29,22 @@ namespace Zork
             try
             {
 
-                foreach (Item item in currentInventory)
+                foreach (Item item in currentInventory.Items)
                 {
                     for (int i = 0; i < inputArray.Length; i++)
                     {
-                        if (item.Name.toLower() == inputArray[i].toLower())
+                        if (item.Name.ToLower() == inputArray[i].ToLower())
                         {
                             foundItem = item;
                         }
                     }
                 }
 
-                if (foundItem)
+                if (foundItem != null)
                 {
                     Console.WriteLine("Used " + foundItem.Name);
                     foundItem.Use();
-                    if (foundItem.singleUse = true)
+                    if (foundItem.SingleUse == true)
                         currentInventory.DestroyItem(foundItem);
 
                 }

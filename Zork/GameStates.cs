@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    enum GameStates { MenuScreen, CreditsScreen, Exit, MainGame };
+    public 
+        enum GameStates { MenuScreen, CreditsScreen, Exit, MainGame };
 }

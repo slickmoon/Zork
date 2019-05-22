@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class ActionMove : ActionBase
+  public class ActionMove : ActionBase
     {
         string[] inputArray;
         Player currentPlayer;
@@ -72,6 +72,7 @@ namespace Zork
                         try
                         {
                             mapID = Convert.ToInt32(inputArray[1]);
+                            currentPlayer.Move(mapID);
                         } catch (FormatException) 
                         {
                             Debug.Error("Failed to read mapID because it ws not a number");

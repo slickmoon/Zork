@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Location : GameObject
+    public class Location : GameObject
     {
         public int mapID;
         public Location northLoc;

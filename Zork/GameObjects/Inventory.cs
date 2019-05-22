@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Inventory : Item
+  public class Inventory : Item
     {
         public List<Item> Items;
 
@@ -63,7 +63,7 @@ namespace Zork
         {
             foreach (Item i in Items)
             {
-                if (i.name.ToLower() == itemName.ToLower())
+                if (i.Name.ToLower() == itemName.ToLower())
                 {
                     return i;
                 }

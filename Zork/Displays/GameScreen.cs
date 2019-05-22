@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class GameScreen : Display
+  public class GameScreen : Display
     {
         private Game currentGame;
 
         public GameScreen()
         {
-            GameFactory gameBuilder = new GameFactory();
-
-            currentGame = gameBuilder.BuildGame();
+            currentGame = GameFactory.Instance.BuildGame();
         }
         public override GameStates Run()
         {

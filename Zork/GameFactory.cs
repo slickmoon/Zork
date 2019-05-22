@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class GameFactory
+    sealed class GameFactory
     {
+        private static readonly GameFactory instance = new GameFactory();
+
+        private GameFactory()
+        {
+
+        }
+
         public Game BuildGame()
         {
-            MapFactory mapBuilder = new MapFactory();
+            
             List<Location> map = new List<Location>();
             
-            map = mapBuilder.ReadMap();
+            map = MapFactory.Instance.ReadMap();
             Player p1 = new Player("Timothy", "Tim", "A cool dude!", map[0]);
 
             Game g1 = new Game(map,p1);
@@ -21,8 +28,15 @@ namespace Zork
 
             return g1;
         }
-            
 
-         //Game baseGame = new Game(//Add parameters here);
+        public static GameFactory Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        //Game baseGame = new Game(//Add parameters here);
     }
 }

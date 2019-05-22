@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class Credits : Display
+    public class Credits : Display
     {
         public override GameStates Run()
         {

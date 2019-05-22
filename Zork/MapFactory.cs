@@ -7,9 +7,22 @@ using System.IO;
 
 namespace Zork
 {
-    class MapFactory
-    { 
+    public sealed class MapFactory
+    {
+        private static readonly MapFactory instance = new MapFactory();
+
         private List<Location> map = new List<Location>();
+
+        private MapFactory()
+        {
+
+        }
+
+        static MapFactory()
+        {
+
+        }
+
         public List<Location> ReadMap()
         {
             string[] mapstring = File.ReadAllLines(@"../../Assets/map.txt");
@@ -31,9 +44,14 @@ namespace Zork
                     loadState = "linking";
                 } else if (String.IsNullOrEmpty(s.Trim()) && loadState.Equals("linking"))
                 {
-                    //ended loading the map
-                    break;
+                    loadState = "items";
                 }
+                else if (String.IsNullOrEmpty(s.Trim()) && loadState.Equals("items"))
+                {
+                    break;
+                    //finished
+                }
+                
                 switch(loadState)
                 {
                     case "names":
@@ -106,6 +124,35 @@ namespace Zork
                             }
                         }
                         break;
+                    case "items":
+                        if (!String.IsNullOrEmpty(s.Trim()))
+                        {
+                            string[] splitline = s.Split('|');
+                            try
+                            {
+                                int itemLocationMapID = ReadMapID(splitline[0], linenumber);
+                                string itemname = splitline[1];
+
+                                switch (itemname)
+                                {
+                                    case "apple" :
+                                        Item newitem = new Apple();
+                                        //find location by mapid and add to location inventory
+                                        break;
+                                    default:
+                                        break;
+
+                                }
+
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.Error(ex.Message);
+                            }
+                        }
+                        break;
+
                     default:
                         break;
                 }
@@ -189,6 +236,14 @@ namespace Zork
             }
             
 
+        }
+
+        public static MapFactory Instance
+        {
+            get
+            {
+                return instance;
+            }
         }
     }
 

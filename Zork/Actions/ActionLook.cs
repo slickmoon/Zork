@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-    class ActionLook : ActionBase
+  public class ActionLook : ActionBase
     {
         string[] inputArray;
         Player currentPlayer;
@@ -24,7 +24,7 @@ namespace Zork
             try
             {   if (inputArray.Length < 2)
                 {
-                    Console.WriteLine("You are currently at: " + currentPlayer.CurrentLoc.name + "\n" + currentPlayer.CurrentLoc.description);
+                    Console.WriteLine("You are currently at: " + currentPlayer.CurrentLoc.Name + "\n" + currentPlayer.CurrentLoc.Description);
                 }
                 else
                 {

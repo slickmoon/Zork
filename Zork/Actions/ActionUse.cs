@@ -24,16 +24,16 @@ namespace Zork
         public override void Do()
         {
             base.Do();
-            Item foundItem;
+            Item foundItem = new Item();
 
             try
             {
 
-                foreach(Item item in currentInventory)
+                foreach (Item item in currentInventory)
                 {
                     for (int i = 0; i < inputArray.Length; i++)
                     {
-                        if(item.Name.toLower() == inputArray[i].toLower())
+                        if (item.Name.toLower() == inputArray[i].toLower())
                         {
                             foundItem = item;
                         }
@@ -42,8 +42,11 @@ namespace Zork
 
                 if (foundItem)
                 {
-                    Console.WriteLine("Used " + foundItem.Name)
+                    Console.WriteLine("Used " + foundItem.Name);
                     foundItem.Use();
+                    if (foundItem.singleUse = true)
+                        currentInventory.DestroyItem(foundItem);
+
                 }
                 else
                 {

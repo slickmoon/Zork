@@ -102,7 +102,7 @@ namespace Zork
                 case Actions.Help:
                     return new ActionHelp();
                 case Actions.Use:
-                    return new Zork.ActionUse(inputArray, p1);
+                    return new ActionUse(inputArray, p1);
                 default:
                     break;
             }

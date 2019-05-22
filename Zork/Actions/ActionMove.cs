@@ -72,7 +72,7 @@ namespace Zork
                         try
                         {
                             mapID = Convert.ToInt32(inputArray[1]);
-                        } catch (FormatException ex) 
+                        } catch (FormatException) 
                         {
                             Debug.Error("Failed to read mapID because it ws not a number");
                         }
@@ -110,7 +110,7 @@ namespace Zork
                             
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Debug.Log("Fix Your Game Epic!");
             }

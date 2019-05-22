@@ -20,8 +20,6 @@ namespace Zork
             maxHitPoints = hitPoints;
             currentLoc = startLoc;
             inventory = new Inventory("Bag","Bag");
-            Item i1 = new Apple();
-            inventory.AddItem(i1);
 
         }
 

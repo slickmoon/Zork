@@ -16,12 +16,14 @@ namespace Zork
         public Location westLoc;
         public Location upLoc;
         public Location downLoc;
+        public Inventory MyInventory = new Inventory();
 
         public bool newLoc = true; //all locations are new at first, when a player enters the game will display the descriptive text if it is the first time the player has been here
 
         public Location(int mapID, string name,string description):base(name,"",description)
         {
             this.mapID = mapID;
+            MyInventory.CanBePickedUp = false;
         }
         
     }

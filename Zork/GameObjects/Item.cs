@@ -9,6 +9,7 @@ namespace Zork
   public class Item : GameObject
     {
         public bool SingleUse = false;
+        public bool CanBePickedUp = true;
 
         public Item(string name, string shortname, string description) : base(name, shortname, description)
         {

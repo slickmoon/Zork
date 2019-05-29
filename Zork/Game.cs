@@ -106,7 +106,7 @@ namespace Zork
                 case Actions.Use:
                     return new ActionUse(inputArray, p1);
                 case Actions.Take:
-                    //return new ActionTake();
+                    return new ActionTake(inputArray, p1);
 
                 default:
                     break;
@@ -130,6 +130,9 @@ namespace Zork
                 Console.WriteLine(p1.CurrentLoc.Description);
                 p1.CurrentLoc.newLoc = false;
             }
+
+            Console.WriteLine(p1.CurrentLoc.MyInventory.ToString());
+            
         }
 
         private void LinkLocations()

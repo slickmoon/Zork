@@ -8,9 +8,15 @@ namespace Zork
 {
   public class Inventory : Item
     {
-        public List<Item> Items;
+        public List<Item> Items = new List<Item>();
+
 
         public Inventory(string name, string description) : base(name, name, description)
+        {
+            
+        }
+
+        public Inventory() : base("", "", "")
         {
             
         }
@@ -22,9 +28,7 @@ namespace Zork
 
         public void AddItem(Item item)
         {
-
             Items.Add(item);
-
         }
 
         public void DestroyItem(Item item)
@@ -86,6 +90,18 @@ namespace Zork
             return removeditem;
         }
 
+        public string ToString()
+        {
+            string output = "";
+            
+            foreach (Item item in Items)
+	        {
+                output += item.Name;
+	        }
+
+            return output;        
+        }
+        
         /*public void UseItem(Item item) 
         {
             item.Use();

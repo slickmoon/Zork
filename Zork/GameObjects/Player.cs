@@ -64,6 +64,7 @@ namespace Zork
             }
             finally
             {
+                //see if a item is at the same loaction as you
                 Debug.Log("Movement finished"); //Movement finished
             }
         }

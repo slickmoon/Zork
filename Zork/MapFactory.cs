@@ -7,11 +7,19 @@ using System.IO;
 
 namespace Zork
 {
+    class ItemLocations 
+    {
+        public int mapid;
+        public Item item;
+    }
+
     public sealed class MapFactory
     {
         private static readonly MapFactory instance = new MapFactory();
 
         private List<Location> map = new List<Location>();
+
+        List<ItemLocations> itemLoactions;
 
         private MapFactory()
         {
@@ -27,6 +35,7 @@ namespace Zork
         {
             string[] mapstring = File.ReadAllLines(@"../../Assets/map.txt");
             int linenumber = 0;
+
             /*
             for(int i = 0; i< 10; i++)
             {
@@ -133,11 +142,22 @@ namespace Zork
                                 int itemLocationMapID = ReadMapID(splitline[0], linenumber);
                                 string itemname = splitline[1];
 
-                                switch (itemname)
+                                switch (itemname.ToLower())
                                 {
                                     case "apple" :
-                                        Item newitem = new Apple();
-                                        //find location by mapid and add to location inventory
+                                        Item item = new Apple();
+
+                                        foreach(Location l in map)
+                                        {
+                                            if (l.mapID == itemLocationMapID)
+                                            {
+                                                l.MyInventory.AddItem(item);
+                                                break;
+                                            }
+                                        }
+
+                                        //itemLoactions.Add(setLoaction(item, itemLocationMapID));
+
                                         break;
                                     default:
                                         break;
@@ -159,6 +179,16 @@ namespace Zork
                 
             }
             return map;
+        }
+
+        ItemLocations setLoaction(Item item, int location)
+        {
+            ItemLocations outItem = new ItemLocations();
+
+            outItem.item = item;
+            outItem.mapid = location;
+
+            return outItem;
         }
 
         int ReadMapID(string newMapIDString, int linenumber)

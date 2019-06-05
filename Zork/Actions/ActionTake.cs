@@ -37,12 +37,14 @@ namespace Zork
                             if(item.CanBePickedUp)
                             {
                                 foundItem = item;
+
+                                currentPlayer.Inventory.AddItem(item);
+                                currentInventory.Items.Remove(item);
                             }
                             else if (!item.CanBePickedUp)
                             {
                                 Console.WriteLine(inputArray[i] + " cannot be picked up");
                             }
-
                         }
                         
                     }

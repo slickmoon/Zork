@@ -16,7 +16,7 @@ namespace Zork
 
         }
 
-        public Item() : base("Blank", "BlankItem","BlankItem")
+        public Item() : base("Blank", "BlankItem", "BlankItem")
         { 
             
         }   

@@ -106,7 +106,7 @@ namespace Zork
                 case Actions.Use:
                     return new ActionUse(inputArray, p1);
                 case Actions.Take:
-                    return new ActionTake(inputArray, p1);
+                    return new ActionMoveItem(inputArray, p1.Inventory, p1.CurrentLoc.Inventory, "take");
 
                 default:
                     break;
@@ -124,14 +124,14 @@ namespace Zork
         private void DisplayState()
         { 
             //Show the current location
-            Console.WriteLine(p1.CurrentLoc.Name);
+            Console.WriteLine("\nYou are at: " + p1.CurrentLoc.Name);
             if(p1.CurrentLoc.newLoc)
             {
                 Console.WriteLine(p1.CurrentLoc.Description);
                 p1.CurrentLoc.newLoc = false;
             }
 
-            Console.WriteLine(p1.CurrentLoc.MyInventory.ToString());
+            Console.WriteLine(p1.CurrentLoc.Inventory.ToString());
             
         }
 

@@ -25,6 +25,7 @@ namespace Zork
             {   if (inputArray.Length < 2)
                 {
                     Console.WriteLine("You are currently at: " + currentPlayer.CurrentLoc.Name + "\n" + currentPlayer.CurrentLoc.Description);
+                    Console.WriteLine("You have " + currentPlayer.Health + " HP");
                 }
                 else
                 {
@@ -33,6 +34,13 @@ namespace Zork
 
                         switch (inputArray[i].ToLower()) //TODO: 
                         {
+                            case "inventory":
+                                Console.WriteLine("Current Inventory:");
+                                foreach(Item item in currentPlayer.Inventory.Items)
+                                {
+                                    Console.WriteLine(item.Name);
+                                }
+                                break;
                             default:
                                 break;
                         }

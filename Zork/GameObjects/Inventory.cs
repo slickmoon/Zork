@@ -16,9 +16,9 @@ namespace Zork
             
         }
 
-        public Inventory() : base("", "", "")
+        public Inventory() : base("", "", "")  
         {
-            
+            CanBePickedUp = false;
         }
 
         public Inventory(List<Item> items, string name, string description) : base(name, name, description)
@@ -93,13 +93,33 @@ namespace Zork
         public string ToString()
         {
             string output = "";
-            
-            foreach (Item item in Items)
-	        {
-                output += item.Name;
-	        }
+            //If there are any items in Items, then show "The following items are here: "
+            Inventory fakeInvent = new Inventory();
+            Inventory i;
 
-            return output;        
+            if(Items.Count != 0)       
+            { 
+                output += "\nInventory: \n---------------------- ";
+                foreach (Item item in Items) //TODO, move this foreach to a function call, and allow this function to call itself when it finds an item that is a inventory, and pass in that inventory to the function call
+	            {
+                    output +=  "\n" + item.Name;
+                    if(item.GetType().Equals(fakeInvent))
+                    {
+                        i = item;
+                        output += "--->"; //note as the start of the inventory
+                        foreach(Item inventoryitem in i)
+                        {
+                            output += "\n" + item.Name;
+                        }
+                        output += "<---"; //note as the end of the inventory
+                    }
+	            }
+            } else 
+            {
+                
+            }
+                    output += "\n";
+            return output;
         }
         
         /*public void UseItem(Item item) 

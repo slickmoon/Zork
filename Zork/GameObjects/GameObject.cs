@@ -16,8 +16,9 @@ namespace Zork
         {
             this.Name = name;
             this.ShortName = shortname;
-            this.Description = description;           
+            this.Description = description;     
         }
+
         public GameObject()
         {
 

@@ -142,16 +142,18 @@ namespace Zork
                                 int itemLocationMapID = ReadMapID(splitline[0], linenumber);
                                 string itemname = splitline[1];
 
+                                Item item = null;
+
                                 switch (itemname.ToLower())
                                 {
                                     case "apple" :
-                                        Item item = new Apple();
+                                        item = new Apple();
 
                                         foreach(Location l in map)
                                         {
                                             if (l.mapID == itemLocationMapID)
                                             {
-                                                l.MyInventory.AddItem(item);
+                                                l.Inventory.AddItem(item);
                                                 break;
                                             }
                                         }
@@ -159,6 +161,18 @@ namespace Zork
                                         //itemLoactions.Add(setLoaction(item, itemLocationMapID));
 
                                         break;
+                                    case "bag" :
+                                    item = new Inventory("Bag","It's a bag!");
+
+                                    foreach(Location l in map)
+                                    {
+                                        if (l.mapID == itemLocationMapID)
+                                        {
+                                            l.Inventory.AddItem(item);
+                                            break;
+                                        }
+                                    }
+                                    break;
                                     default:
                                         break;
 

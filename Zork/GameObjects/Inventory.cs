@@ -90,36 +90,36 @@ namespace Zork
             return removeditem;
         }
 
-        public string ToString()
+        public void PrintItems(List<Item> items = null, int callNumber = 0)
         {
-            string output = "";
-            //If there are any items in Items, then show "The following items are here: "
-            Inventory fakeInvent = new Inventory();
-            Inventory i;
-
-            if(Items.Count != 0)       
-            { 
-                output += "\nInventory: \n---------------------- ";
-                foreach (Item item in Items) //TODO, move this foreach to a function call, and allow this function to call itself when it finds an item that is a inventory, and pass in that inventory to the function call
-	            {
-                    output +=  "\n" + item.Name;
-                    if(item.GetType().Equals(fakeInvent))
-                    {
-                        i = item;
-                        output += "--->"; //note as the start of the inventory
-                        foreach(Item inventoryitem in i)
-                        {
-                            output += "\n" + item.Name;
-                        }
-                        output += "<---"; //note as the end of the inventory
-                    }
-	            }
-            } else 
+            if (items == null)
             {
-                
+                items = Items;
             }
-                    output += "\n";
-            return output;
+
+            string space = "";
+
+            if (callNumber > 100)
+                return;
+
+            for (int i = 0; i < callNumber; i++)
+            {
+                space += "  ";
+            }
+
+            foreach (Item i in items)
+            {
+                if (i.isInventory == true)
+                {
+                    Inventory invent = i as Inventory;
+                    Console.WriteLine(space + i.Name + ":");
+                    PrintItems(invent.Items, callNumber += 1);
+                }
+                else
+                {
+                Console.WriteLine(space + i.Name);
+                }
+            }
         }
         
         /*public void UseItem(Item item) 

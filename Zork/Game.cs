@@ -131,7 +131,7 @@ namespace Zork
                 p1.CurrentLoc.newLoc = false;
             }
 
-            Console.WriteLine(p1.CurrentLoc.Inventory.ToString());
+            p1.CurrentLoc.Inventory.PrintItems();
             
         }
 

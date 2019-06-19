@@ -11,6 +11,8 @@ namespace Zork
         public bool SingleUse = false;
         public bool CanBePickedUp = true;
 
+        public bool isInventory = false;
+
         public Item(string name, string shortname, string description) : base(name, shortname, description)
         {
 

@@ -36,10 +36,7 @@ namespace Zork
                         {
                             case "inventory":
                                 Console.WriteLine("Current Inventory:");
-                                foreach(Item item in currentPlayer.Inventory.Items)
-                                {
-                                    Console.WriteLine(item.Name);
-                                }
+                                currentPlayer.Inventory.PrintItems();
                                 break;
                             default:
                                 break;

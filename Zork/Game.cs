@@ -106,7 +106,7 @@ namespace Zork
                 case Actions.Use:
                     return new ActionUse(inputArray, p1);
                 case Actions.Take:
-                    return new ActionMoveItem(inputArray, p1.Inventory, p1.CurrentLoc.Inventory, "take");
+                    return new ActionMoveItem(inputArray, p1, ItemMovements.Take);
 
                 default:
                     break;

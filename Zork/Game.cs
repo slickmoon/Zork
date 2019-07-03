@@ -40,6 +40,8 @@ namespace Zork
         {
 
             Console.Clear();
+
+
             while (!GameOver && !Globals.exitRequested) //Main game loop
             {
                 ActionBase currentAction;
@@ -105,14 +107,15 @@ namespace Zork
                     return new ActionHelp();
                 case Actions.Use:
                     return new ActionUse(inputArray, p1);
+                case Actions.Drop:
+                    return new ActionMoveItem(inputArray, p1, ItemMovements.Drop);
                 case Actions.Take:
                     return new ActionMoveItem(inputArray, p1, ItemMovements.Take);
 
                 default:
                     break;
             }
-            return null;
-           
+            return new ActionBase();           
             //if "move" then look at next index and see if its a direction and then move the palyer that way
             //move east
             //e
@@ -177,6 +180,9 @@ namespace Zork
                         return true;
                     case "put":
                         //actionsToDo = Actions.MoveItem;
+                        return true;
+                    case "drop":
+                        actionToDo = Actions.Drop;
                         return true;
                     case "hit":
                         //actionToDo = Actions.Attack;

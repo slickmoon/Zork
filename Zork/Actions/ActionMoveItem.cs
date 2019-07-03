@@ -81,35 +81,18 @@ namespace Zork
             {
                 inventoryName = inputArray[3];
                 //take sword from bag
-                if (!String.IsNullOrEmpty(inventoryName))
-                {
-                    invent = SearchInventory(player.Inventory, inventoryName) as Inventory; //search player
-
-                    if(invent == null)
-                    {
-                        invent = SearchInventory(player.CurrentLoc.Inventory, inventoryName) as Inventory; //search location
-                        if (invent == null)
-                        {
-                            Console.WriteLine("I can't find a " + inventoryName + " to take from");
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("I can't do that.");
-                }
-            }
-
+                invent = SearchForInventory(inventoryName);
+            }  
 
             if(inputArray.Length > 1)
             {
                 itemName = inputArray[1];
                 if (invent == null)
 	            {
-                    item = SearchInventory(player.CurrentLoc.Inventory, itemName);
+                    item = SearchInventoryForItem(player.CurrentLoc.Inventory, itemName);
 	            }else 
                 {
-                    item = SearchInventory(invent, itemName);
+                    item = SearchInventoryForItem(invent, itemName);
                 }
 
                 if (item != null)
@@ -164,80 +147,62 @@ namespace Zork
 
         void Put()
         {
-            /*
-                        if (hasFoundItem && !hasFoundPartnerItem)  
-                        {
-                            if (inputArray.Length > 3 && !hasFoundPartnerItem)
-                            {
-                                foreach (Item item in fromInventory.Items) //Search first inventory
-                                {
+            //put sword in bag
+            //bag can be in location or player
+            //sword can be in location or player
 
-                                    if (item.Name.ToLower() == inputArray[i].ToLower())
-                                    {
-                                        if (item is Inventory)
-                                        {
-                                            originatorInventory = fromInventory;
-                                            foundPartnerItem = item as Inventory;
-
-                                            hasFoundPartnerItem = true;
-                                            break;
-                                        }
-                                        else if (!item.CanBePickedUp)
-                                        {
-                                            Console.WriteLine(inputArray[i] + " cannot be picked up");
-                                        }
-                                    }
-                                }
-
-                                if(!hasFoundPartnerItem)
-                                {
-                                    //Search other inventory
-                                    foreach (Item item in inventory.Items) //Search location inventory
-                                    {
-
-                                        if (item.Name.ToLower() == inputArray[i].ToLower())
-                                        {
-                                            if (item is Inventory)
-                                            {
-                                                originatorInventory = inventory;
-                                                foundPartnerItem = item as Inventory;
-
-                                                hasFoundPartnerItem = true;
-                                                break;
-                                            }
-                                            else if (!item.CanBePickedUp)
-                                            {
-                                                Console.WriteLine(inputArray[i] + " cannot be picked up");
-                                            }
-                                        }
-                                    }
-                                }
-
-                            }
-                        }
-                        else
-                        {
-                            break;
-                        }
-
-                        // Take item and put it in player inventory
-                        */
-            /*
-                        else if (hasFoundItem && hasFoundPartnerItem)
-            {
-                foundPartnerItem.AddItem(foundItem);
-                originatorInventory.Items.Remove(foundItem);
-                Console.WriteLine("You picked up a " + foundItem.Name);
-            }
-            */
         }
         void Drop()
         {
-            
+            string inventoryName;
+            Inventory invent = null;
+            string itemName;
+            Item item = null;
 
+            if (inputArray.Length > 3)
+            {
+                inventoryName = inputArray[3];
+                //drop sword from bag
+                invent = SearchForInventory(inventoryName, false);
+            }
+
+            if (inputArray.Length > 1)
+            {
+                itemName = inputArray[1];
+                if (invent == null)
+                {
+                    item = SearchInventoryForItem(player.Inventory, itemName, false);
+                }
+                else
+                {
+                    item = SearchInventoryForItem(invent, itemName, false);
+                }
+
+                if (item != null)
+                {
+                    player.CurrentLoc.Inventory.AddItem(item);
+
+                    if (invent == null)
+                    {
+                        player.Inventory.Items.Remove(item);
+                        Console.WriteLine("You dropped " + item.Name);
+                    }
+                    else
+                    {
+                        invent.Items.Remove(item);
+                        Console.WriteLine("You dropped " + item.Name + " from " + invent.Name);
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("I can't find a " + itemName);
+                }
+
+            }
         }
 
-        Item SearchInventory(Inventory inventory, string searchString, int callNumber = 0) 
+        Item SearchInventoryForItem(Inventory inventory, string searchString, bool recursive = true, int callNumber = 0 ) 
         {
             Item itemout = null;
             if (callNumber > 100)
@@ -250,10 +215,10 @@ namespace Zork
                     return i;
                 }
                 
-                if (i.isInventory) //go recursive
+                if (i.isInventory && recursive) //go recursive
                 {
                     Inventory invent = i as Inventory;
-                    itemout = SearchInventory(invent, searchString, callNumber++);
+                    itemout = SearchInventoryForItem(invent, searchString, recursive, callNumber++);
                 }
                 if (itemout != null)
                 {
@@ -262,6 +227,34 @@ namespace Zork
                 
             }
             return null;
+        }
+
+        Inventory SearchForInventory(string inventoryName, bool searchLoc = true)
+        {
+            Inventory invent = null;
+            //take sword from bag
+            if (!String.IsNullOrEmpty(inventoryName))
+            {
+                invent = SearchInventoryForItem(player.Inventory, inventoryName) as Inventory; //search player
+
+                if (invent == null)
+                {
+                    if(searchLoc)
+                    {
+                         invent = SearchInventoryForItem(player.CurrentLoc.Inventory, inventoryName) as Inventory; //search location
+                    }
+                    
+                    if (invent == null)
+                    {
+                        Console.WriteLine("I can't find a " + inventoryName + " to take from");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("I can't do that.");
+            }
+            return invent;
         }
     }
 }

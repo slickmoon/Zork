@@ -94,6 +94,7 @@ namespace Zork
                             }
                             catch (Exception ex)
                             {
+                                Debug.Error("Map load failed at line: " + linenumber + " inner exception: " + ex.Message);
                                 Console.WriteLine("Map load failed at line: " + linenumber + " inner exception: " + ex.Message);
                             }
 

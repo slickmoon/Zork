@@ -19,7 +19,13 @@ namespace Zork
         {
             maxHitPoints = hitPoints;
             currentLoc = startLoc;
-            inventory = new Inventory("Bag","Bag");
+            inventory = new Inventory();
+
+            Inventory bag = new Inventory("Bag","Bag");
+            bag.AddItem(new Apple());
+
+            inventory.AddItem(bag);
+            //(inventory.GetItem("Bag") as Inventory).AddItem(new Apple());
 
         }
 
@@ -54,6 +60,7 @@ namespace Zork
             }
             catch (NullReferenceException)
             {
+                Debug.Error("There is a wall there");
                 //if the location doesn't exist, then dont move there
                 Console.WriteLine("There is a wall there");
                 //TODO: Put the player back to somewhere valid if they are somewhere invalid???

@@ -9,7 +9,7 @@ namespace Zork
 {
     public static class Debug
     {
-        public static FileStream Debugstream = File.OpenWrite(@"../../Debug.txt");
+        
 
 
         public static void Log(string text)
@@ -27,16 +27,21 @@ namespace Zork
         {
             if (text != "")
             {
-                if (Debugstream.CanWrite)
-                {
+                using(FileStream Debugstream = File.OpenWrite(@"../../Debug.txt")){
+                    if (Debugstream.CanWrite)
+                    {
 
-                    StreamWriter swriter = new StreamWriter(Debugstream);
-                    swriter.WriteLineAsync(DateTime.Now.ToString() + " - " + text);
+                        StreamWriter swriter = new StreamWriter(Debugstream);
+                        swriter.WriteLineAsync(DateTime.Now.ToString() + " - " + text);
+
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Debug file locked!/nDebug ERROR text: " + text);
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("Debug file locked!/nDebug ERROR text: " + text);
-                }
+                
             }
             else
             {

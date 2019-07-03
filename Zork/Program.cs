@@ -58,6 +58,7 @@ namespace Zork
                 Console.ReadLine();
             } catch (Exception ex)
             {
+                Debug.Error(ex.Message);
                 Console.WriteLine(ex.Message);
                 Console.ReadLine();
 

@@ -13,17 +13,19 @@ namespace Zork
 
         public Inventory(string name, string description) : base(name, name, description)
         {
-            
+            isInventory = true;
         }
 
         public Inventory() : base("", "", "")  
         {
             CanBePickedUp = false;
+            isInventory = true;
         }
 
         public Inventory(List<Item> items, string name, string description) : base(name, name, description)
         {
             this.Items = items;
+            isInventory = true;
         }
 
         public void AddItem(Item item)

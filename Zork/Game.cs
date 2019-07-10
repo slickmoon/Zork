@@ -52,7 +52,6 @@ namespace Zork
                 //Process Input
                 currentAction = ProcessInput();
                 //Update Game
-                //TODO: Create ActionProcessing Classes and call one of them here
                 currentAction.Do(); 
 
                 //Show output to player
@@ -111,7 +110,8 @@ namespace Zork
                     return new ActionMoveItem(inputArray, p1, ItemMovements.Drop);
                 case Actions.Take:
                     return new ActionMoveItem(inputArray, p1, ItemMovements.Take);
-
+                case Actions.Put:
+                    return new ActionMoveItem(inputArray, p1, ItemMovements.Put);
                 default:
                     break;
             }
@@ -179,7 +179,7 @@ namespace Zork
                         actionToDo = Actions.Use;
                         return true;
                     case "put":
-                        //actionsToDo = Actions.MoveItem;
+                        actionToDo = Actions.Put;
                         return true;
                     case "drop":
                         actionToDo = Actions.Drop;
@@ -190,6 +190,7 @@ namespace Zork
                     case "take":
                         actionToDo = Actions.Take;
                         return true;
+
                     default:
                         break;
 

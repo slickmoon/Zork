@@ -20,13 +20,6 @@ namespace Zork
             maxHitPoints = hitPoints;
             currentLoc = startLoc;
             inventory = new Inventory();
-
-            Inventory bag = new Inventory("Bag","Bag");
-            bag.AddItem(new Apple());
-
-            inventory.AddItem(bag);
-            //(inventory.GetItem("Bag") as Inventory).AddItem(new Apple());
-
         }
 
         public void Move(Directions newdirection)   //TODO: update this function so that the player can't move to a blank location (mapID = 0)

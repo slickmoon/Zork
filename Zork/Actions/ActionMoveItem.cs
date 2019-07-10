@@ -24,15 +24,6 @@ namespace Zork
         public override void Do()
         {
             base.Do();
-            /*
-            Item foundItem = new Item();
-            Inventory foundPartnerItem = new Inventory();
-            Inventory originatorInventory = new Inventory();
-             
-
-            bool hasFoundItem = false;
-            bool hasFoundPartnerItem = false;
-            */
 
             try
             {
@@ -51,16 +42,6 @@ namespace Zork
                         break;
 
                 }
-
-                //Take()    //take sword from bag --sword inside bag, and bag is on ground or on player
-
-
-                //Case Put
-                //Put()     //put sword in bag --sword on player or ground, bag on ground or on player
-
-                //Case Drop //drop sword from bag --sword on player, bag on player
-                //Drop()
-
             }
 
             catch (Exception ex)
@@ -77,7 +58,7 @@ namespace Zork
             string itemName;
             Item item = null;
 
-            if(inputArray.Length > 3)
+            if(inputArray.Length > 3)     //are we taking from an inventory item? 
             {
                 inventoryName = inputArray[3];
                 //take sword from bag
@@ -116,33 +97,6 @@ namespace Zork
                 }
             } 
 
-            /*
-            for (int i = 0; i < inputArray.Length; i++)
-            {
-                if (!hasFoundItem)
-                {
-                    foreach (Item item in fromInventory.Items)
-                    {
-
-                        if (item.Name.ToLower() == inputArray[i].ToLower())
-                        {
-                            if (item.CanBePickedUp)
-                            {
-                                foundItem = item;
-
-                                hasFoundItem = true;
-                                break;
-                            }
-                            else if (!item.CanBePickedUp)
-                            {
-                                Console.WriteLine(inputArray[i] + " cannot be picked up");
-                            }
-                        }
-
-                    }
-                }
-                */
-
         }
 
         void Put()
@@ -150,8 +104,68 @@ namespace Zork
             //put sword in bag
             //bag can be in location or player
             //sword can be in location or player
+            string inventoryName;
+            Inventory invent = null;
+            string itemName;
+            Item item = null;
 
+            if(inputArray.Length > 3)   //figure out if we are taking from a bag first
+            {
+                inventoryName = inputArray[3];
+                //put sword in bag
+                invent = SearchForInventory(inventoryName); //find inventory to put item into
+
+                itemName = inputArray[1];
+
+                if (invent != null)
+	            {
+                    //Found an inventory to put into, now lets find the item
+                    Inventory itemInventory;
+
+                    item = SearchInventoryForItem(player.CurrentLoc.Inventory, itemName);
+                    if(item != null)
+                    {
+                        itemInventory = player.CurrentLoc.Inventory;
+                    }
+                    else
+                    {
+
+                        item = SearchInventoryForItem(player.Inventory, itemName);
+                        if(item != null)
+                            itemInventory = player.Inventory;
+                        else
+                            return;
+                    }
+
+
+                    if (item != null)
+                    {
+                        
+                        invent.AddItem(item);
+                        itemInventory.Items.Remove(item);
+                        Console.WriteLine("You put the " + item.Name + " in " + invent.Name);
+                    }
+                    else
+                    {
+                        Console.WriteLine("I couldn't find a " + itemName);
+                        return;
+                    }
+
+
+	            }
+                else 
+                {
+                    Console.WriteLine("I can't put a " + itemName + " in a " + inventoryName);
+                    return;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Put what where?");
+                return;
+            }
         }
+
         void Drop()
         {
             string inventoryName;
@@ -243,11 +257,7 @@ namespace Zork
                     {
                          invent = SearchInventoryForItem(player.CurrentLoc.Inventory, inventoryName) as Inventory; //search location
                     }
-                    
-                    if (invent == null)
-                    {
-                        Console.WriteLine("I can't find a " + inventoryName + " to take from");
-                    }
+                   
                 }
             }
             else

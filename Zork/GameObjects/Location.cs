@@ -17,6 +17,7 @@ namespace Zork
         public Location upLoc;
         public Location downLoc;
         private Inventory inventory = new Inventory();
+        public List<NPC> bots = new List<NPC>();
 
         public bool newLoc = true; //all locations are new at first, when a player enters the game will display the descriptive text if it is the first time the player has been here
 
@@ -25,6 +26,15 @@ namespace Zork
             this.mapID = mapID;
             inventory.CanBePickedUp = false;
         }
+
+        public void Do()
+        {
+            foreach (NPC bot in bots)
+            {
+                bot.Do();
+            }
+        }
+
 
         public Inventory Inventory
         {

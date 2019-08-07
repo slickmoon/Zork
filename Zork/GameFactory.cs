@@ -25,6 +25,7 @@ namespace Zork
 
             Game g1 = new Game(map,p1);
             
+            Globals.game = g1;
 
             return g1;
         }

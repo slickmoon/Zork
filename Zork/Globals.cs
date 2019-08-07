@@ -9,5 +9,6 @@ namespace Zork
     static class Globals
     {
         public static bool exitRequested = false; 
+        public static Game game;
     }
 }

@@ -59,6 +59,10 @@ namespace Zork
                 {
                     break;
                     //finished
+                }else if (String.IsNullOrEmpty(s.Trim()) && loadState.Equals("npc"))
+                {
+                    break;
+                    //finished
                 }
                 
                 switch(loadState)
@@ -188,11 +192,17 @@ namespace Zork
                         }
                         break;
 
+                        case "npc":
+
+                            break;
+
                     default:
                         break;
                 }
                 
             }
+            Goblin g1 = new Goblin(map[6]);
+            map[6].bots.Add(g1);
             return map;
         }
 

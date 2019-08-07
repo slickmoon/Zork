@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Zork
 {
-  public class Game
+    public class Game
     {
-        private Player p1;
+        public Player p1;
         public List<Location> Map;
         public bool GameOver = false;
 
@@ -52,11 +52,13 @@ namespace Zork
                 //Process Input
                 currentAction = ProcessInput();
                 //Update Game
-                currentAction.Do(); 
+
+                currentAction.Do(); //Run the players input
+                p1.Location.Do(); //Run the location's tasks
 
                 //Show output to player
                 //Show player current location
-               
+
             }
         }
 

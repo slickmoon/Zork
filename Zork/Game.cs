@@ -30,9 +30,8 @@ namespace Zork
 
             /*
             TODO:
-            Add Inventory System
-            More Dynamic Actions System
-            NPC's
+            Combat
+            Key
            */
         }
 

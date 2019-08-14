@@ -13,6 +13,6 @@
 6|||||3|
 
 3|Apple
-3|bag
+3|Bag
 
 6|Goblin

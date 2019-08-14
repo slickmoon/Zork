@@ -11,12 +11,11 @@ namespace Zork
         private bool agitated = false;
 
 
-        public Goblin(Location startLoc) : base("A big green goblin", "Goblin", "He looks scary", startLoc, ["grunt","muhhh","grr"], ["ouch","ooft","grr"])
+        public Goblin(Location startLoc) : base("Big green goblin", "Goblin", "He looks scary", startLoc, new List<string>(new string[] { "grunt", "muhhh", "grr" }), new List<string>(new string[] { "ouch", "ooft", "grr" }))
 	    {
         }
-	    
 
-        public void Do()
+        public override void Do()
         {
             if(agitated)
             {
@@ -25,8 +24,7 @@ namespace Zork
 
             } else
             {
-
-                Console.WriteLine(idleDialogue[Random.Next(0, IdleDialogue.Count)]);
+                Console.WriteLine(IdleDialogue[new Random().Next(0, IdleDialogue.Count)]);
             }
             
             agitated = true;

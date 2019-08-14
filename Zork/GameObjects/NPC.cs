@@ -28,13 +28,14 @@ namespace Zork
         public List<string> IdleDialogue = new List<string>();
         public List<string> HurtDialogue = new List<string>();
 
+
         public NPC(string name, string shortname, string description, Location startLoc, List<string> idleDialogue, List<string> hurtDialogue) : base(name, shortname, description, startLoc)
         {
             this.IdleDialogue = idleDialogue;
             this.HurtDialogue = hurtDialogue;
         }
 
-        public void Do()
+        public virtual void Do()
         {
 
         }
@@ -44,10 +45,10 @@ namespace Zork
             hitPoints += value;
             if(hitPoints > maxHitPoints)
             {
-                Console.WriteLine(name + "'s health restored to full!");
+                Console.WriteLine(Name + "'s health restored to full!");
                 hitPoints = maxHitPoints;
             }
-            Console.WriteLine(name + " health is now: " + hitPoints);
+            Console.WriteLine(Name + " health is now: " + hitPoints);
         }
 
         public override void RemoveHealth(int value)
@@ -56,15 +57,24 @@ namespace Zork
             hitPoints -= value;
             if ((hitPoints-value) <= 0)
             {
-                Console.WriteLine(name + " has died");
+                Console.WriteLine(Name + " has died");
+                      
                 Alive = false;
+
+                //Drop items on the ground
+                foreach(Item i in inventory.Items)
+                {
+                    Console.WriteLine(Name + " dropped a " + i.Name);
+                    currentLoc.Inventory.AddItem(i);
+                }
             }
             else
             {
-                string ouchLine = HurtDialogue[Random.Next(0, HurtDialogue.Count)];
+                Random rand = new Random();
+                string ouchLine = HurtDialogue[rand.Next(0, HurtDialogue.Count)];
 
-                Console.WriteLine(name + ": " + ouchLine);
-                Console.WriteLine(name + " health is now: " + hitPoints);
+                Console.WriteLine(Name + ": " + ouchLine);
+                Console.WriteLine(Name + " health is now: " + hitPoints);
             }
         }
         //TODO: Add Look method to look at items

@@ -149,24 +149,23 @@ namespace Zork
                 Console.WriteLine("Health restored to full!");
                 hitPoints = maxHitPoints;
             }
-            Console.WriteLine("Your health is now: " + hitPoints);
+            Console.WriteLine("Your health is now: " + hitPoints + " HP");
         }
 
         public virtual void RemoveHealth(int value)
         {
 
             hitPoints -= value;
-            if ((hitPoints-value) <= 0)
+            if ((hitPoints) <= 0)
             {
                 Console.WriteLine("You are dead!");
                 CurrentGame.GameOver = true;
             }
             else
             {
-                Console.WriteLine("Your health is now: " + hitPoints);
+                Console.WriteLine("Your health is now: " + hitPoints + " HP");
             }
         }
-        //TODO: Add Look method to look at items
 
 
     }

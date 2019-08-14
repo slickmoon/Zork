@@ -57,7 +57,7 @@ namespace Zork
                 }
                 else if (String.IsNullOrEmpty(s.Trim()) && loadState.Equals("items"))
                 {
-                    break;
+                    loadState = "npc";
                     //finished
                 }else if (String.IsNullOrEmpty(s.Trim()) && loadState.Equals("npc"))
                 {
@@ -193,17 +193,49 @@ namespace Zork
                         break;
 
                         case "npc":
+                            
+                        if (!String.IsNullOrEmpty(s.Trim()))
+                        {
+                            string[] splitline = s.Split('|');
+                            try
+                            {
+                                int NPCLocationMapID = ReadMapID(splitline[0], linenumber);
+                                string NPCname = splitline[1];
 
-                            break;
+                                switch (NPCname.ToLower())
+                                {
+                                    case "goblin" :
+                                        foreach(Location l in map)
+                                        {
+                                            if (l.mapID == NPCLocationMapID)
+                                            {
+                                                l.bots.Add(new Goblin(l));
+                                                break;
+                                            }
+                                        }
+
+                                        break;
+                                    default:
+                                        break;
+
+                                }
+
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.Error(ex.Message);
+                            }
+                        }
+                        break;
 
                     default:
                         break;
                 }
                 
             }
-            Goblin g1 = new Goblin(map[6]);
-            map[6].bots.Add(g1);
             return map;
+
         }
 
         ItemLocations setLoaction(Item item, int location)

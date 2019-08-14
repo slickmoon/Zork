@@ -54,7 +54,7 @@ namespace Zork
                 //Update Game
 
                 currentAction.Do(); //Run the players input
-                p1.Location.Do(); //Run the location's tasks
+                p1.CurrentLoc.Do(); //Run the location's tasks
 
                 //Show output to player
                 //Show player current location

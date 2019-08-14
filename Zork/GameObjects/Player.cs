@@ -8,10 +8,10 @@ namespace Zork
 {
   public class Player : GameObject
     {
-        private int hitPoints = 10;
-        private int maxHitPoints;
-        private Location currentLoc;
-        private Inventory inventory;
+        protected int hitPoints = 10;
+        protected int maxHitPoints;
+        protected Location currentLoc;
+        protected Inventory inventory;
 
         public Game CurrentGame;
 
@@ -141,7 +141,7 @@ namespace Zork
             }
         }
         
-        public void AddHealth(int value)
+        public virtual void AddHealth(int value)
         {
             hitPoints += value;
             if(hitPoints > maxHitPoints)
@@ -152,7 +152,7 @@ namespace Zork
             Console.WriteLine("Your health is now: " + hitPoints);
         }
 
-        public void RemoveHealth(int value)
+        public virtual void RemoveHealth(int value)
         {
 
             hitPoints -= value;

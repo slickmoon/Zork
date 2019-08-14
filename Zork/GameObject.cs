@@ -8,8 +8,8 @@ namespace Zork
 {
   public class GameObject
     {
-        string name;
-        string shortName;
+        protected string name;
+        protected string shortName;
 
     }
 }

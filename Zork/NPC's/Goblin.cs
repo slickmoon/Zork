@@ -11,7 +11,7 @@ namespace Zork
         private bool agitated = false;
 
 
-        public Goblin(Location startLoc) base("A big green goblin", "Goblin", "He looks scary", startLoc, ["grunt","muhhh","grr"], ["ouch","ooft","grr"])
+        public Goblin(Location startLoc) : base("A big green goblin", "Goblin", "He looks scary", startLoc, ["grunt","muhhh","grr"], ["ouch","ooft","grr"])
 	    {
         }
 	    
@@ -25,8 +25,8 @@ namespace Zork
 
             } else
             {
-                
-                Console.WriteLine(idleDialogue[Random.Next(0, IdleDialogue.Count)])
+
+                Console.WriteLine(idleDialogue[Random.Next(0, IdleDialogue.Count)]);
             }
 
             agitated = true;

@@ -34,7 +34,10 @@ namespace Zork
             this.HurtDialogue = hurtDialogue;
         }
 
-        public void Do();
+        public void Do()
+        {
+
+        }
 
         public override void AddHealth(int value)
         {
@@ -60,7 +63,7 @@ namespace Zork
             {
                 string ouchLine = HurtDialogue[Random.Next(0, HurtDialogue.Count)];
 
-                Console.WriteLine(name + ": " + ouchline);
+                Console.WriteLine(name + ": " + ouchLine);
                 Console.WriteLine(name + " health is now: " + hitPoints);
             }
         }

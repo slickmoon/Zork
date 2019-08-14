@@ -28,7 +28,7 @@ namespace Zork
 
                 Console.WriteLine(idleDialogue[Random.Next(0, IdleDialogue.Count)]);
             }
-
+            
             agitated = true;
         }
     }

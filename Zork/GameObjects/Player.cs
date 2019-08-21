@@ -15,6 +15,11 @@ namespace Zork
 
         public Game CurrentGame;
 
+        //Player stats go here
+        //Strength
+        //Defense
+        //Anything else??
+
         public Player(string name, string shortname, string description, Location startLoc) : base(name, shortname, description)
         {
             maxHitPoints = hitPoints;

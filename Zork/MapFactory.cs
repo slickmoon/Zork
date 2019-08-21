@@ -7,19 +7,18 @@ using System.IO;
 
 namespace Zork
 {
+    /*
     class ItemLocations 
     {
         public int mapid;
         public Item item;
-    }
+    } */
 
     public sealed class MapFactory
     {
         private static readonly MapFactory instance = new MapFactory();
 
         private List<Location> map = new List<Location>();
-
-        List<ItemLocations> itemLoactions;
 
         private MapFactory()
         {
@@ -238,6 +237,7 @@ namespace Zork
 
         }
 
+        /*
         ItemLocations setLoaction(Item item, int location)
         {
             ItemLocations outItem = new ItemLocations();
@@ -246,7 +246,7 @@ namespace Zork
             outItem.mapid = location;
 
             return outItem;
-        }
+        } */
 
         int ReadMapID(string newMapIDString, int linenumber)
         {

@@ -13,6 +13,10 @@ namespace Zork
 
         public bool isInventory = false;
 
+        //Item stats
+        //attack power
+        //anything else??
+
         public Item(string name, string shortname, string description) : base(name, shortname, description)
         {
 

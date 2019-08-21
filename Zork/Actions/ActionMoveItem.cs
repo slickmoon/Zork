@@ -216,6 +216,8 @@ namespace Zork
             }
         }
 
+
+
         Item SearchInventoryForItem(Inventory inventory, string searchString, bool recursive = true, int callNumber = 0 ) 
         {
             Item itemout = null;
@@ -257,7 +259,6 @@ namespace Zork
                     {
                          invent = SearchInventoryForItem(player.CurrentLoc.Inventory, inventoryName) as Inventory; //search location
                     }
-                   
                 }
             }
             else

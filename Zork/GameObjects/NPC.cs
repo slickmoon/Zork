@@ -33,6 +33,7 @@ namespace Zork
         {
             this.IdleDialogue = idleDialogue;
             this.HurtDialogue = hurtDialogue;
+            inventory.AddItem(new Apple());
         }
 
         public virtual void Do()

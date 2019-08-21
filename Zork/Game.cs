@@ -113,6 +113,8 @@ namespace Zork
                     return new ActionMoveItem(inputArray, p1, ItemMovements.Take);
                 case Actions.Put:
                     return new ActionMoveItem(inputArray, p1, ItemMovements.Put);
+                case Actions.Attack:
+                    return new ActionAttack(inputArray,p1);
                 default:
                     break;
             }
@@ -186,7 +188,7 @@ namespace Zork
                         actionToDo = Actions.Drop;
                         return true;
                     case "hit":
-                        //actionToDo = Actions.Attack;
+                        actionToDo = Actions.Attack;
                         return true;
                     case "take":
                         actionToDo = Actions.Take;

@@ -177,6 +177,18 @@ namespace Zork
                                         }
                                     }
                                     break;
+                                    case "sword":
+                                        item = new Sword();
+
+                                        foreach (Location l in map)
+                                        {
+                                            if (l.mapID == itemLocationMapID)
+                                            {
+                                                l.Inventory.AddItem(item);
+                                                break;
+                                            }
+                                        }
+                                        break;
                                     default:
                                         break;
 

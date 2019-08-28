@@ -73,6 +73,8 @@
     <Compile Include="GameObjects\NPC.cs" />
     <Compile Include="NPC's\Goblin.cs" />
     <Compile Include="Actions\ActionAttack.cs" />
+    <Compile Include="GameObjects\Weapon.cs" />
+    <Compile Include="Item\Weapons\Sword.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

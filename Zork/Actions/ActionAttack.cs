@@ -31,7 +31,7 @@ namespace Zork
                     //find the target
                     foreach (NPC n in player.CurrentLoc.bots)
                     {
-                        if(n.Name.Equals(inputArray[1]) && n.Alive)
+                        if(n.ShortName.ToLower().Equals(inputArray[1].ToLower()) && n.Alive)
                         {
                             target = n as GameObject;
                             break;
@@ -51,6 +51,22 @@ namespace Zork
 
                             Console.WriteLine("There isn't a " + inputArray[3] + " to attack with");
 
+                        }
+
+                        if (sourceItem != null) 
+                        {
+
+                            
+                            try
+                            {
+                                Weapon w = sourceItem as Weapon;
+                                w.Use(player, target);
+                            }
+                            catch(Exception ex)
+                            {
+                                Debug.Log("Source item is not a weapon \n" + ex.ToString());
+                            }
+                        
                         }
 
                         //i may have an item, and may have a target

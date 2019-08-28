@@ -37,10 +37,6 @@ namespace Zork
 
         public void Run()
         {
-
-            Console.Clear();
-
-
             while (!GameOver && !Globals.exitRequested) //Main game loop
             {
                 ActionBase currentAction;
@@ -50,6 +46,7 @@ namespace Zork
 
                 //Process Input
                 currentAction = ProcessInput();
+                Console.Clear();
                 //Update Game
 
                 currentAction.Do(); //Run the players input

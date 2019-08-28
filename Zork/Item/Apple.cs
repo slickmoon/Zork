@@ -16,9 +16,10 @@ namespace Zork
             SingleUse = true;
         }
 
-        public void Use(Player player)
+        public override void Use()
         {
             base.Use();
+            Player player = Globals.game.p1;
             player.AddHealth(hpToRestore);
         }
     }

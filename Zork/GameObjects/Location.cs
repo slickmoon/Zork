@@ -32,7 +32,14 @@ namespace Zork
             foreach (NPC bot in bots)
             {
                 Console.WriteLine("There is a " + bot.Name + ". " + bot.Description);
-                bot.Do();
+                
+                if(bot.Alive)
+                {
+                    bot.Do();
+                } else
+                {
+                    Console.WriteLine("There is a dead " + bot.Name + " here.");
+                }
             }
         }
 

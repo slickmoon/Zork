@@ -20,6 +20,9 @@ namespace Zork
         //Defense
         //Anything else??
 
+        public int Strength = 5;
+        public int Defence = 1;
+
         public Player(string name, string shortname, string description, Location startLoc) : base(name, shortname, description)
         {
             maxHitPoints = hitPoints;

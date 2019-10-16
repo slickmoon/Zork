@@ -26,7 +26,7 @@ namespace Zork
 
                 if (t != null && p != null)
                 {
-                    int s, d, finaldamage;
+                    int s, finaldamage;
 
                     s = p.Strength;
 

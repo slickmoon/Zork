@@ -42,11 +42,42 @@ namespace Zork
 
                 if (foundItem != null)
                 {
-                    Console.WriteLine("Used " + foundItem.Name);
-                    foundItem.Use();
-                    if (foundItem.SingleUse == true)
-                        currentInventory.DestroyItem(foundItem);
+                    if(inputArray.Length < 3)
+                    {
+                        Console.WriteLine("Used " + foundItem.Name);
+                        foundItem.Use();
+                        if (foundItem.SingleUse == true)
+                            currentInventory.DestroyItem(foundItem);
 
+                    } else if (inputArray.Length > 3 && inputArray.Length < 5) //Use key on door
+                    {
+                        GateBase foundGate;
+                        foreach(GateBase g in currentPlayer.currentLoc.Gates)
+                        {
+                            if (g.Name.ToLower() == inputArray[3].ToLower())
+                            {
+                                foundGate = g;
+                                if (foundGate != null)
+                                {
+                                    foundGate.Do(foundItem);
+                                    if (foundItem.SingleUse == true)
+                                        currentInventory.DestroyItem(foundItem);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("I couldn't find what to use that on");
+                                }
+                                break;
+                            }
+                        }
+                        
+                        
+                    }
+                    else{
+                        Console.WriteLine("I don't know what to use that on");    
+                    }
+
+                    
                 }
                 else
                 {

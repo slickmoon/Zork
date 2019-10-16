@@ -75,6 +75,9 @@
     <Compile Include="Actions\ActionAttack.cs" />
     <Compile Include="GameObjects\Weapon.cs" />
     <Compile Include="Item\Weapons\Sword.cs" />
+    <Compile Include="GameObjects\GateBase.cs" />
+    <Compile Include="Item\GoldKey.cs" />
+    <Compile Include="Gates\KeyDoor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -10,7 +10,7 @@ namespace Zork
     {
         protected int hitPoints = 10;
         protected int maxHitPoints;
-        protected Location currentLoc;
+        public Location currentLoc;
         protected Inventory inventory;
 
         public Game CurrentGame;
@@ -34,30 +34,49 @@ namespace Zork
         {
             try
             {
-                switch (newdirection)
+                GateBase gateblockingmovement = null;
+                foreach (GateBase g in CurrentLoc.Gates)
                 {
-                    case Directions.East:
-                        Move(CurrentLoc.eastLoc);
+                    if (g.direction == newdirection && g.IsActive)
+                    {
+                        //We have a gate blocking our way
+                        gateblockingmovement = g;
                         break;
-                    case Directions.West:
-                        Move(CurrentLoc.westLoc);
-                        break;
-                    case Directions.North:
-                        Move(CurrentLoc.northLoc);
-                        break;
-                    case Directions.South:
-                        Move(CurrentLoc.southLoc);
-                        break;
-                    case Directions.Up:
-                        Move(CurrentLoc.upLoc);
-                        break;
-                    case Directions.Down:
-                        Move(CurrentLoc.downLoc);
-                        break;
-                    default:
-                        Console.WriteLine("That's not a location");
-                        break;
+                    }
                 }
+                
+                if (gateblockingmovement == null)
+                {
+                    switch (newdirection)
+                    {
+                        case Directions.East:
+                            Move(CurrentLoc.eastLoc);
+                            break;
+                        case Directions.West:
+                            Move(CurrentLoc.westLoc);
+                            break;
+                        case Directions.North:
+                            Move(CurrentLoc.northLoc);
+                            break;
+                        case Directions.South:
+                            Move(CurrentLoc.southLoc);
+                            break;
+                        case Directions.Up:
+                            Move(CurrentLoc.upLoc);
+                            break;
+                        case Directions.Down:
+                            Move(CurrentLoc.downLoc);
+                            break;
+                        default:
+                            Console.WriteLine("That's not a location");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("There is a " + gateblockingmovement.Name + " in the way");
+                }
+               
             }
             catch (NullReferenceException)
             {

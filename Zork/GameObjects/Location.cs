@@ -18,6 +18,7 @@ namespace Zork
         public Location downLoc;
         private Inventory inventory = new Inventory();
         public List<NPC> bots = new List<NPC>();
+        public List<GateBase> Gates = new List<GateBase>();
 
         public bool newLoc = true; //all locations are new at first, when a player enters the game will display the descriptive text if it is the first time the player has been here
 
@@ -25,16 +26,18 @@ namespace Zork
         {
             this.mapID = mapID;
             inventory.CanBePickedUp = false;
+            Gates.Add(new KeyDoor(Directions.North, "RedDoor", "A big ominous red door", "Red"));
         }
 
         public void Do()
         {
             foreach (NPC bot in bots)
             {
-                Console.WriteLine("There is a " + bot.Name + ". " + bot.Description);
+                
                 
                 if(bot.Alive)
                 {
+                    Console.WriteLine("There is a " + bot.Name + ". " + bot.Description);
                     bot.Do();
                 } else
                 {

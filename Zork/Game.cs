@@ -135,6 +135,11 @@ namespace Zork
             }
 
             p1.CurrentLoc.Inventory.PrintItems();
+
+            foreach(GateBase g in p1.CurrentLoc.Gates)
+            {
+                Console.WriteLine(g.Description);
+            }
             
         }
 

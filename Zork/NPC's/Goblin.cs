@@ -13,7 +13,7 @@ namespace Zork
 
         public Goblin(Location startLoc) : base("Big green goblin", "Goblin", "He looks scary", startLoc, new List<string>(new string[] { "grunt", "muhhh", "grr" }), new List<string>(new string[] { "ouch", "ooft", "grr" }))
 	    {
-            
+            inventory.AddItem(new GoldKey("Red"));
         }
 
         public override void Do()

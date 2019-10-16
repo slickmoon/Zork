@@ -138,7 +138,10 @@ namespace Zork
 
             foreach(GateBase g in p1.CurrentLoc.Gates)
             {
-                Console.WriteLine(g.Description);
+                if (g.IsActive)
+                {
+                    Console.WriteLine(g.Description);
+                }
             }
             
         }

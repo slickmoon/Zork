@@ -18,7 +18,7 @@ namespace Zork
             direction = d;
         }
 
-        public void Do(GameObject inputItem)
+        public virtual void Do(GameObject inputItem)
         {
 
         }

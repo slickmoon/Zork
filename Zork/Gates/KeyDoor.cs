@@ -9,7 +9,6 @@ namespace Zork
     public class KeyDoor : GateBase
     {
 
-        public bool IsActive = true;
         public string UnlockingPhrase = "";
         private GoldKey key;
 
@@ -18,7 +17,7 @@ namespace Zork
             this.UnlockingPhrase = unlockingphrase; 
         }
 
-        public void Do(GameObject inputItem)
+        public override void Do(GameObject inputItem)
         {
             try{
                 key = inputItem as GoldKey;

@@ -12,6 +12,7 @@
             <h1>Hi</h1> 
             <jeff>I am a jeff block</jeff>
             <table class="error" id="errortable">
+                 <asp:GridView ID="Tournament" runat="server"></asp:GridView>
 <tr>
     <th>Firstname</th>
     <th>Lastname</th>

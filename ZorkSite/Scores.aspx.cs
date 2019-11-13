@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace ZorkSite
 {
@@ -15,6 +16,12 @@ namespace ZorkSite
             {
                 
                 Highscore art = db.Highscores.Where((x) => x.Name == "Nick").FirstOrDefault(); //make an object of the table type and fill it with the results of the where query
+               
+                DataTable dt = new DataTable();
+                var results = from Highscores in dt.AsEnumerable() select Highscores;
+                
+                Tournament.DataSource = dt;
+                Tournament.DataBind();
 
                 Response.Write(art.Score.ToString()); //push data into the page
 

@@ -8,7 +8,7 @@ namespace Zork
 {
   public class Player : GameObject
     {
-        protected int hitPoints = 10;
+        protected int hitPoints = 1;
         protected int maxHitPoints;
         public Location currentLoc;
         protected Inventory inventory;
@@ -186,6 +186,21 @@ namespace Zork
             if ((hitPoints) <= 0)
             {
                 Console.WriteLine("You are dead!");
+                Console.WriteLine("Your score is " + 50);
+                Console.Write("Please enter a name for your high score: ");
+                string name = "";
+                int score = new Random().Next(0,50000);
+
+                name = Console.ReadLine();
+
+                using (ZorkScoresEntities db = new ZorkScoresEntities()) //get database context
+                {
+                    var newscore = db.Set<Highscore>(); //make an object to represent the table we are using
+                    newscore.Add(new Highscore { Name = name, Score = score, SubmitDateTime = DateTime.UtcNow }); //add a new row with an new object of the table type with these values
+
+                    db.SaveChanges();  //commit data to table
+                }
+
                 CurrentGame.GameOver = true;
             }
             else
